@@ -8,9 +8,11 @@ import errno
 
 import yaml
 
+import vimanArgParser
+
 #errno = ['OK',                          #0
         #'~/.vim/bundle don\'t exists!'] #1
-
+'''
 class vimanArgParser(argparse.ArgumentParser):
     def __init__(self,*args,**kwargs):
         super().__init__(...)
@@ -30,6 +32,7 @@ class vimanArgParser(argparse.ArgumentParser):
 
         #Version
         self.add_argument('-V','--version',action='version',version='%(prog)s 0.0.1')
+'''
 
 class vimanGitWrapper():
     '''
@@ -48,7 +51,8 @@ class vimanGitWrapper():
         if not os.path.isdir(vimanGitWrapper.DIR_PLUGIN):
             sys.exit(errno.ENOENT)
         os.chdir(vimanGitWrapper.DIR_PLUGIN)
-        sys.exit(subprocess.run(['git','clone',url]))
+        #sys.exit(subprocess.run(['git','clone',url]))
+        return subprocess.run(['git','clone',url])
 
     @staticmethod
     def upgrade(url):
@@ -56,7 +60,7 @@ class vimanGitWrapper():
         @brief upgrade a vim plugin by git from url
         @param url url of git repository
         '''
-        vimanGitWrapper.upgradeByName(vimanGitWrapper.getPlugin4Url(url))
+        return vimanGitWrapper.upgradeByName(vimanGitWrapper.getPlugin4Url(url))
         
     @staticmethod
     def upgradeByName(name):
@@ -64,7 +68,8 @@ class vimanGitWrapper():
         if not os.path.isdir(path):
             sys.exit(errno.ENOENT)
         os.chdir(path)
-        sys.exit(subprocess.run(['git','pull']))
+        #sys.exit(subprocess.run(['git','pull']))
+        return subprocess.run(['git','pull'])
 
     @staticmethod
     def remove(url):
@@ -72,7 +77,7 @@ class vimanGitWrapper():
         @brief remove a vim plugin from url
         @param url url of git repository
         '''
-        vimanGitWrapper.removeByName(vimanGitWrapper.getPlugin4Url(url))
+        return vimanGitWrapper.removeByName(vimanGitWrapper.getPlugin4Url(url))
 
     @staticmethod
     def removeByName(name):
@@ -81,7 +86,8 @@ class vimanGitWrapper():
         if not os.path.isdir(path):
             print(path)
             sys.exit(errno.ENOENT)
-        sys.exit(subprocess.run(['rm','-rf',path]))
+        #sys.exit(subprocess.run(['rm','-rf',path]))
+        return subprocess.run(['rm','-rf',path])
 
     @staticmethod
     def getPlugin4Url(url):
@@ -95,9 +101,9 @@ class vimanGitWrapper():
 
 def main():
     #parse argumenits
-    argparser = vimanArgParser(prog='viman')
-    args = argparser.parse_args()
-
+    #argparser = vimanArgParser(prog='viman')
+    #args = argparser.parse_args()
+    '''
     if args.synchronize :
         vimanGitWrapper.install(args.synchronize)
 
@@ -105,7 +111,23 @@ def main():
         vimanGitWrapper.remove(args.remove)
     elif args.upgrade:
         vimanGitWrapper.upgrade(args.upgrade)
+    '''
+    parser = vimanArgParser.vimanArgParser(sys.argv[1:])
+    print(parser.operations)
+    print(parser.options)
+    print(parser.targets)
+    if parser.operations[0] in vimanArgParser.vimanOperations.operations['sync'][0]:
+        for target in parser.targets:
+            vimanGitWrapper.install(target)
+    elif parser.operations[0] in vimanArgParser.vimanOperations.operations['remove'][0]:
+        for target in parser.targets:
+            vimanGitWrapper.remove(target)
+    elif parser.operations[0] in vimanArgParser.vimanOperations.operations['upgrade'][0]:
+        for target in parser.targets:
+            vimanGitWrapper.upgrade(target)
+
+    return 0
 
 if '__main__' == __name__:
-    main()
+    sys.exit(main())
 

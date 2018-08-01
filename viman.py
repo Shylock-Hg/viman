@@ -6,7 +6,7 @@ import subprocess
 import os
 import errno
 
-#import yaml
+import yaml
 
 #errno = ['OK',                          #0
         #'~/.vim/bundle don\'t exists!'] #1
@@ -22,11 +22,11 @@ class vimanArgParser(argparse.ArgumentParser):
         #Remove and option
         self.add_argument('-R','--remove',help='Remove plugin!')
 
-        #Query and option
-        self.add_argument('-Q','--query',help='Query local plugin!')
-
         #Upgrade and option
         self.add_argument('-U','--upgrade',help='Upgrade local plugin!')
+
+        #Query and option
+        self.add_argument('-Q','--query',help='Query local plugin!')
 
         #Version
         self.add_argument('-V','--version',action='version',version='%(prog)s 0.0.1')
@@ -37,8 +37,7 @@ class vimanGitWrapper():
     @note all other operation base on this
     '''
 
-    #DIR_PLUGIN = '~/.vim/bundle' os.path.isdir fail
-    DIR_PLUGIN='/home/shylock/.vim/bundle'
+    DIR_PLUGIN = os.path.join(os.getenv('HOME'),'.vim/bundle')
 
     @staticmethod
     def install(url):
@@ -57,11 +56,11 @@ class vimanGitWrapper():
         @brief upgrade a vim plugin by git from url
         @param url url of git repository
         '''
-        upgradeByName(_getPlugin4Url(url))
+        vimanGitWrapper.upgradeByName(vimanGitWrapper.getPlugin4Url(url))
         
     @staticmethod
     def upgradeByName(name):
-        path = sys.path.join(vimanGitWrapper.DIR_PLUGIN,name)
+        path = os.path.join(vimanGitWrapper.DIR_PLUGIN,name)
         if not os.path.isdir(path):
             sys.exit(errno.ENOENT)
         os.chdir(path)
@@ -73,24 +72,26 @@ class vimanGitWrapper():
         @brief remove a vim plugin from url
         @param url url of git repository
         '''
-        removeByName(_getPlugin4Url(url))
+        vimanGitWrapper.removeByName(vimanGitWrapper.getPlugin4Url(url))
 
     @staticmethod
     def removeByName(name):
-        path = sys.path.join(vimanGitWrapper.DIR_PLUGIN,name)
+        sys.stdout.flush()
+        path = os.path.join(vimanGitWrapper.DIR_PLUGIN,name)
         if not os.path.isdir(path):
+            print(path)
             sys.exit(errno.ENOENT)
         sys.exit(subprocess.run(['rm','-rf',path]))
 
     @staticmethod
-    def _getPlugin4Url(url):
+    def getPlugin4Url(url):
         '''
         @brief get name of plugin from url
         @param url git repository url
         '''
-        token_url = url.split('/')  # https://github.com/user/repository.git
-        token_name = token_url[-1].split('.') # repository.git
-        return token_name[0]
+        basename = os.path.basename(url)
+        name = os.path.splitext(basename)
+        return name[0]
 
 def main():
     #parse argumenits
@@ -99,8 +100,11 @@ def main():
 
     if args.synchronize :
         vimanGitWrapper.install(args.synchronize)
+
     elif args.remove :
-        pass
+        vimanGitWrapper.remove(args.remove)
+    elif args.upgrade:
+        vimanGitWrapper.upgrade(args.upgrade)
 
 if '__main__' == __name__:
     main()

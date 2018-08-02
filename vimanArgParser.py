@@ -39,8 +39,11 @@ class vimanOperations():
 
 
 class vimanOptions():
+
+    ## (short,long,operations)
     options = {'sysupgrade':('u','sysupgrade','S'),
-            'recursive':('r','recursive','U')} ## (short,long,operations)
+            'file':('f','file','SRU'),
+            'recursive':('r','recursive','U')} 
 
     @staticmethod
     def getKey4Option(option:str):

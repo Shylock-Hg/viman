@@ -1,23 +1,23 @@
 viman
 ==========
 
-Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on .. _a pathogen: https://github.com/tpope/vim-pathogen and .. _a git: https://github.com/git/git.
+Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on .. _pathogen: https://github.com/tpope/vim-pathogen and .. _git: https://github.com/git/git.
 
 installation
 ------------------
 
 0. install vim.
-1. install and configure .. _a pathogen: https://github.com/tpope/vim-pathogen.
-2. install .. _a git: https://github.com/git/git.
-3. install *viman* by `pip install viman`.
+1. install and configure .. _pathogen: https://github.com/tpope/vim-pathogen.
+2. install .. _git: https://github.com/git/git.
+3. install *viman* by :bash:`pip install viman`.
 
 
 usage
 -----------------
 
-* install plugin by `viman -S https://github.com/altercation/vim-colors-solarized.git`.
-* uninstall plugin by `viman -R vim-colors-solarized` or `viman -R https://github.com/altercation/vim-colors-solarized.git`.
-* query all plugin installed by `viman -Qa`.
+* install plugin by :bash:`viman -S https://github.com/altercation/vim-colors-solarized.git`.
+* uninstall plugin by :bash:`viman -R vim-colors-solarized` or :bash:`viman -R https://github.com/altercation/vim-colors-solarized.git`.
+* query all plugin installed by :bash:`viman -Qa`.
 
 feature
 --------------------

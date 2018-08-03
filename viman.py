@@ -51,9 +51,11 @@ def main():
     print(parser.operations)
     print(parser.options)
     print(parser.targets)
-    #gitWrapper = vimanGitWrapper()
+
     if parser.operations[0] in vimanArgParser.vimanOperations.operations['sync'][0]:
+        # sync
         if vimanArgParser.vimanOptions.options['file'][0] in parser.options:
+            # sysupgrade
             for f in parser.targets:
                 vimanGitWrapper.installByYml(f)
         else:
@@ -63,7 +65,6 @@ def main():
     elif parser.operations[0] in vimanArgParser.vimanOperations.operations['remove'][0]:
         for target in parser.targets:
             vimanGitWrapper.remove(target)
-            #gitWrapper.remove(target)
     elif parser.operations[0] in vimanArgParser.vimanOperations.operations['upgrade'][0]:
         for target in parser.targets:
             vimanGitWrapper.upgrade(target)
@@ -74,7 +75,8 @@ def main():
     elif parser.operations[0] in vimanArgParser.vimanOperations.operations['help'][0]:
         pass
     else:
-        print('error:invalid operation `{}`!'.format(parser.operations[0]), file=sys.stderr)
+        print('error:invalid operation `{}`!'.format(parser.operations[0]),
+                file=sys.stderr)
         return errno.EINVAL
 
     return 0

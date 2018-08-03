@@ -25,10 +25,17 @@ class vimanGitWrapper():
         @param url url of git repository
         '''
         if not os.path.isdir(vimanGitWrapper.DIR_PLUGIN):
+            print('error:don\'t exist directory `{}`!'.format(vimanGitWrapper.DIR_PLUGIN),
+                    file=sys.stderr)
             sys.exit(errno.ENOENT)
         os.chdir(vimanGitWrapper.DIR_PLUGIN)
         #sys.exit(subprocess.run(['git','clone',url]))
-        return subprocess.run(['git','clone',url])
+        ret = subprocess.run(['git','clone',url])
+        if not 0 == ret.returncode:
+            print('error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
+                    file=sys.stderr)
+            sys.exit(ret.returncode)
+        return ret
 
     @staticmethod
     def installByYml(ymlName):
@@ -56,13 +63,19 @@ class vimanGitWrapper():
     def upgradeByName(name):
         path = os.path.join(vimanGitWrapper.DIR_PLUGIN,name)
         if not os.path.isdir(path):
+            print('error:don\'t exist directory `{}`!'.format(path),file=sys.stderr)
             sys.exit(errno.ENOENT)
         os.chdir(path)
         #sys.exit(subprocess.run(['git','pull']))
-        return subprocess.run(['git','pull'])
+        ret = subprocess.run(['git','pull'])
+        if not 0 == ret.returncode:
+            print('error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
+                    file=sys.stderr)
+            sys.exit(ret.returncode)
+        return ret
 
     @staticmethod
-    @vimanYamlWrapper.removeWrapper
+    #@vimanYamlWrapper.removeWrapper anti-multi YAML decorator
     def remove(url):
         '''
         @brief remove a vim plugin from url
@@ -73,12 +86,16 @@ class vimanGitWrapper():
     @staticmethod
     @vimanYamlWrapper.removeByNameWrapper
     def removeByName(name):
-        sys.stdout.flush()
         path = os.path.join(vimanGitWrapper.DIR_PLUGIN,name)
         if not os.path.isdir(path):
-            print(path)
+            print('error:don\'t exist directory `{}`!'.format(path),file=sys.stderr)
             sys.exit(errno.ENOENT)
         #sys.exit(subprocess.run(['rm','-rf',path]))
-        return subprocess.run(['rm','-rf',path])
+        ret = subprocess.run(['rm','-rf',path])
+        if not 0 == ret.returncode:
+            print('error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
+                    file=sys.stderr)
+            sys.exit(ret.returncode)
+        return ret
 
 

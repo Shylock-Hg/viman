@@ -10,18 +10,17 @@ class vimanYamlWrapper():
 
     #ymlDefault = '~/.viman.yml'
     ymlDefault = os.path.join(os.getenv('HOME'),'.viman.yml')
-    ymlMode = 'r+'
+    #ymlMode = 'r+'
 
     @staticmethod
     def installWrapper(install):
         def wrapper(url):
             ret = install(url) ## install plugin
-            if not 0 == ret.returncode:
-                print('error:subprocess run git failed!',file=sys.stderr)
-                sys.exit(ret.returncode)
+            '''
             with open(vimanYamlWrapper.ymlDefault,'a+') as f:
                 yaml.dump({vimanUtils.getPlugin4Url(url):{'url':url,'recipe':''}}
                         ,stream=f,default_flow_style=False)
+            '''
             '''
             with open(vimanYamlWrapper.ymlDefault,vimanYamlWrapper.ymlMode) as f:
                 yml = dict(yaml.load(f))
@@ -30,6 +29,9 @@ class vimanYamlWrapper():
                 f.truncate()
                 yaml.dump(yml,stream=f,default_flow_style=False)
             '''
+            yml = vimanYamlWrapper.loadYml()
+            yml[vimanUtils.getPlugin4Url(url)] = {'url':url,'recipe':''}
+            vimanYamlWrapper.dumpYml(yml)
             return ret
 
         return wrapper
@@ -38,12 +40,17 @@ class vimanYamlWrapper():
     def removeWrapper(remove):
         def wrapper(url):
             ret = remove(url)  ## remove plugin
+            '''
             with open(vimanYamlWrapper.ymlDefault,vimanYamlWrapper.ymlMode) as f:
                 yml = yaml.load(f)
                 yml.pop(vimanUtils.getPlugin4Url(url))
                 f.seek(0)
                 f.truncate()
                 yaml.dump(yml,stream=f,default_flow_style=False)
+            '''
+            yml = vimanYamlWrapper.loadYml()
+            yml.pop(vimanUtils.getPlugin4Url(url))
+            vimanYamlWrapper.dumpYml(yml)
             return ret
         
         return wrapper
@@ -52,23 +59,40 @@ class vimanYamlWrapper():
     def removeByNameWrapper(removeByName):
         def wrapper(name):
             ret = removeByName(name) ## remove plugin by name
+            '''
             with open(vimanYamlWrapper.ymlDefault,vimanYamlWrapper.ymlMode) as f:
                 yml = yaml.load(f)
                 yml.pop(name)
                 f.seek(0)
                 f.truncate()
                 yaml.dump(yml,stream=f,default_flow_style=False)
+            '''
+            yml = vimanYamlWrapper.loadYml()
+            yml.pop(name)
+            vimanYamlWrapper.dumpYml(yml)
             return ret
 
         return wrapper
 
+    @staticmethod
+    def loadYml(file=ymlDefault):
+        with open(file,'r') as f:
+            yml = yaml.load(f)
+            f.close()
+            return yml
+
+    @staticmethod
+    def dumpYml(yml,file=ymlDefault):
+        with open(file,'w') as f:
+            yaml.dump(yml,stream=f,default_flow_style=False)
+            f.close()
+
 
 def _test():
-    with open('test.yml','r+') as f:
+    with open(vimanYamlWrapper.ymlDefault,'r') as f:
         #yaml.dump(yaml.load(f),stream = f, default_flow_style=False)
         yml = yaml.load(f)
-        f.seek(0)
-        yaml.dump(yml,stream=f,default_flow_style=False)
+        print(yml)
 
 if '__main__' == __name__:
     _test()

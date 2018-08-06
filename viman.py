@@ -9,6 +9,9 @@ import errno
 import vimanArgParser
 from vimanGitWrapper import vimanGitWrapper
 
+PROGRAM = 'viman'
+VERSION = '0.0.1'
+
 #errno = ['OK',                          #0
         #'~/.vim/bundle don\'t exists!'] #1
 '''
@@ -52,7 +55,7 @@ def main():
     print(parser.options)
     print(parser.targets)
 
-    if parser.operations[0] in vimanArgParser.vimanOperations.operations['sync'][0]:
+    if parser.operations[0] == vimanArgParser.vimanOperations.operations['sync'][0]:
         # sync
         if vimanArgParser.vimanOptions.options['file'][0] in parser.options:
             # sysupgrade
@@ -62,18 +65,19 @@ def main():
             for target in parser.targets:
                 vimanGitWrapper.install(target)
 
-    elif parser.operations[0] in vimanArgParser.vimanOperations.operations['remove'][0]:
+    elif parser.operations[0] == vimanArgParser.vimanOperations.operations['remove'][0]:
         for target in parser.targets:
             vimanGitWrapper.remove(target)
-    elif parser.operations[0] in vimanArgParser.vimanOperations.operations['upgrade'][0]:
+    elif parser.operations[0] == vimanArgParser.vimanOperations.operations['upgrade'][0]:
         for target in parser.targets:
             vimanGitWrapper.upgrade(target)
-    elif parser.operations[0] in vimanArgParser.vimanOperations.operations['query'][0]:
+    elif parser.operations[0] == vimanArgParser.vimanOperations.operations['query'][0]:
         pass
-    elif parser.operations[0] in vimanArgParser.vimanOperations.operations['version'][0]:
-        pass
-    elif parser.operations[0] in vimanArgParser.vimanOperations.operations['help'][0]:
-        pass
+    elif parser.operations[0] == vimanArgParser.vimanOperations.operations['version'][0]:
+        print('{}-{}'.format(PROGRAM,VERSION))
+    elif parser.operations[0] == vimanArgParser.vimanOperations.operations['help'][0]:
+        vimanArgParser.vimanArgParser.printUsage()
+        #parser.printUsage()
     else:
         print('error:invalid operation `{}`!'.format(parser.operations[0]),
                 file=sys.stderr)

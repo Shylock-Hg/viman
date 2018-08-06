@@ -6,13 +6,13 @@ import errno
 import copy
 
 class vimanOperations():
-    ## (short,long)
-    operations = {'sync':('S','sync'),
-                  'remove':('R','remove'),
-                  'upgrade':('U','upgrade'),
-                  'query':('Q','query'),
-                  'version':('V','version'),
-                  'help':('h','help')}
+    ## (short,long,des)
+    operations = {'sync':('S','sync','Synchronize vim plugin package!'),
+                  'remove':('R','remove','Remove vim plugin package!'),
+                  'upgrade':('U','upgrade','Upgrade vim plugin package!'),
+                  'query':('Q','query','Query vim plugin package!'),
+                  'version':('V','version','Show version of application!'),
+                  'help':('h','help','Print help information!')}
     @staticmethod
     def getKey4Operation(operation:str):
         '''
@@ -40,10 +40,10 @@ class vimanOperations():
 
 class vimanOptions():
 
-    ## (short,long,operations)
-    options = {'sysupgrade':('u','sysupgrade','S'),
-            'file':('f','file','SRU'),
-            'recursive':('r','recursive','U')} 
+    ## (short,long,operations,des)
+    options = {'sysupgrade':('u','sysupgrade','S','Upgrade all vim plugin packages!'),
+            'file':('f','file','SRU','Specify plugins by yml file!'),
+            'recursive':('r','recursive','U','Recursive upgrade vim plugin packages!')} 
 
     @staticmethod
     def getKey4Option(option:str):
@@ -123,9 +123,21 @@ class vimanArgParser():
         for opt in opts_options:
             check_option(opt,operations[0])
 
-        self.operations = opts_operations ## operations
+        self.operations = vimanOperations.operations[opts_operations[0]][0] ## operations
+        opts_options = list(map(lambda l : vimanOptions.operations[ops][0], opts_options))
         self.options = opts_options ## options
 
+    @staticmethod
+    def printUsage():
+        '''
+        @brief print usage of application
+        '''
+        print('Synopsis of viman: viman <operation> [options...] [targets...]\n')
+        for ops in vimanOperations.operations.values():
+            print('    Operation {},{} for {}\n'.format(ops[0],ops[1],ops[2]))
+            for opt in vimanOptions.options.values():
+                if ops[0] in opt[2]:
+                    print('        Option {},{} for {}\n'.format(opt[0],opt[1],opt[3]))
 
 
 def _test():

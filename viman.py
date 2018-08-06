@@ -8,6 +8,7 @@ import errno
 
 import vimanArgParser
 from vimanGitWrapper import vimanGitWrapper
+from vimanYamlWrapper import vimanYamlWrapper
 
 PROGRAM = 'viman'
 VERSION = '0.0.1'
@@ -72,7 +73,9 @@ def main():
         for target in parser.targets:
             vimanGitWrapper.upgrade(target)
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['query'][0]:
-        pass
+        yml = vimanYamlWrapper.loadYml()
+        for name in yml:
+            print(format(name))
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['version'][0]:
         print('{}-{}'.format(PROGRAM,VERSION))
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['help'][0]:

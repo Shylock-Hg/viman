@@ -123,8 +123,15 @@ class vimanArgParser():
         for opt in opts_options:
             check_option(opt,operations[0])
 
-        self.operations = vimanOperations.operations[opts_operations[0]][0] ## operations
-        opts_options = list(map(lambda l : vimanOptions.operations[ops][0], opts_options))
+        if len(opts_operations[0]) > 1:
+            self.operations = vimanOperations.operations[opts_operations[0]][0] ## operations
+        else:
+            self.operations = opts_operations
+
+        opts_options_short = filter(lambda o : 1 == len(o), copy.deepcopy(opts_options))
+        opts_options_long = filter(lambda o : 1 < len(o), copy.deepcopy(opts_options))
+        opts_options_long = map(lambda l : vimanOptions.operations[ops][0], opts_options_long)
+        opts_options = list(opts_options_short) + list(opts_options_long)
         self.options = opts_options ## options
 
     @staticmethod
@@ -134,10 +141,10 @@ class vimanArgParser():
         '''
         print('Synopsis of viman: viman <operation> [options...] [targets...]\n')
         for ops in vimanOperations.operations.values():
-            print('    Operation {},{} for {}\n'.format(ops[0],ops[1],ops[2]))
+            print('    Operation `-{},--{}` for {}\n'.format(ops[0],ops[1],ops[2]))
             for opt in vimanOptions.options.values():
                 if ops[0] in opt[2]:
-                    print('        Option {},{} for {}\n'.format(opt[0],opt[1],opt[3]))
+                    print('        Option `-{},--{}` for {}\n'.format(opt[0],opt[1],opt[3]))
 
 
 def _test():

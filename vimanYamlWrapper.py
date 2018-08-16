@@ -30,6 +30,8 @@ class vimanYamlWrapper():
                 yaml.dump(yml,stream=f,default_flow_style=False)
             '''
             yml = vimanYamlWrapper.loadYml()
+            if None == yml:
+                yml = {}
             yml[vimanUtils.getPlugin4Url(url)] = {'url':url,'recipe':''}
             vimanYamlWrapper.dumpYml(yml)
             return ret

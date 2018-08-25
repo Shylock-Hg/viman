@@ -78,6 +78,8 @@ class vimanYamlWrapper():
 
     @staticmethod
     def loadYml(file=ymlDefault):
+        if not os.path.isfile(file):
+            os.mknod(file);
         with open(file,'r') as f:
             yml = yaml.load(f)
             f.close()

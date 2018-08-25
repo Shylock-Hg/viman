@@ -6,9 +6,9 @@ import subprocess
 import os
 import errno
 
-import vimanArgParser
-from vimanGitWrapper import vimanGitWrapper
-from vimanYamlWrapper import vimanYamlWrapper
+from viman import vimanArgParser
+from viman import vimanGitWrapper
+from viman import vimanYamlWrapper
 
 PROGRAM = 'viman'
 VERSION = '0.0.1'
@@ -44,12 +44,12 @@ def main():
     #args = argparser.parse_args()
     '''
     if args.synchronize :
-        vimanGitWrapper.install(args.synchronize)
+        vimanGitWrapper.vimanGitWrapper.install(args.synchronize)
 
     elif args.remove :
-        vimanGitWrapper.remove(args.remove)
+        vimanGitWrapper.vimanGitWrapper.remove(args.remove)
     elif args.upgrade:
-        vimanGitWrapper.upgrade(args.upgrade)
+        vimanGitWrapper.vimanGitWrapper.upgrade(args.upgrade)
     '''
     parser = vimanArgParser.vimanArgParser(sys.argv[1:])
     print(parser.operations)
@@ -61,19 +61,19 @@ def main():
         if vimanArgParser.vimanOptions.options['file'][0] in parser.options:
             # sysupgrade
             for f in parser.targets:
-                vimanGitWrapper.installByYml(f)
+                vimanGitWrapper.vimanGitWrapper.installByYml(f)
         else:
             for target in parser.targets:
-                vimanGitWrapper.install(target)
+                vimanGitWrapper.vimanGitWrapper.install(target)
 
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['remove'][0]:
         for target in parser.targets:
-            vimanGitWrapper.remove(target)
+            vimanGitWrapper.vimanGitWrapper.remove(target)
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['upgrade'][0]:
         for target in parser.targets:
-            vimanGitWrapper.upgrade(target)
+            vimanGitWrapper.vimanGitWrapper.upgrade(target)
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['query'][0]:
-        yml = vimanYamlWrapper.loadYml()
+        yml = vimanYamlWrapper.vimanYamlWrapper.loadYml()
         for name in yml:
             print(format(name))
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['version'][0]:

@@ -6,8 +6,8 @@ import errno
 
 import yaml
 
-from vimanYamlWrapper import vimanYamlWrapper
-from vimanUtils import vimanUtils
+from viman import vimanYamlWrapper
+from viman import vimanUtils
 
 class vimanGitWrapper():
     '''
@@ -18,7 +18,7 @@ class vimanGitWrapper():
     DIR_PLUGIN = os.path.join(os.getenv('HOME'),'.vim/bundle')
 
     @staticmethod
-    @vimanYamlWrapper.installWrapper
+    @vimanYamlWrapper.vimanYamlWrapper.installWrapper
     def install(url):
         '''
         @brief install a vim plugin to .vim/bundle by git from url
@@ -57,7 +57,7 @@ class vimanGitWrapper():
         @brief upgrade a vim plugin by git from url
         @param url url of git repository
         '''
-        return vimanGitWrapper.upgradeByName(vimanUtils.getPlugin4Url(url))
+        return vimanGitWrapper.upgradeByName(vimanUtils.vimanUtils.getPlugin4Url(url))
         
     @staticmethod
     def upgradeByName(name):
@@ -75,16 +75,16 @@ class vimanGitWrapper():
         return ret
 
     @staticmethod
-    #@vimanYamlWrapper.removeWrapper anti-multi YAML decorator
+    #@vimanYamlWrapper.vimanYamlWrapper.removeWrapper anti-multi YAML decorator
     def remove(url):
         '''
         @brief remove a vim plugin from url
         @param url url of git repository
         '''
-        return vimanGitWrapper.removeByName(vimanUtils.getPlugin4Url(url))
+        return vimanGitWrapper.removeByName(vimanUtils.vimanUtils.getPlugin4Url(url))
 
     @staticmethod
-    @vimanYamlWrapper.removeByNameWrapper
+    @vimanYamlWrapper.vimanYamlWrapper.removeByNameWrapper
     def removeByName(name):
         path = os.path.join(vimanGitWrapper.DIR_PLUGIN,name)
         if not os.path.isdir(path):

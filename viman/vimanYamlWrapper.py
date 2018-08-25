@@ -4,7 +4,7 @@ import yaml
 import os
 import sys
 
-from vimanUtils import vimanUtils
+from viman import vimanUtils
 
 class vimanYamlWrapper():
 
@@ -18,13 +18,13 @@ class vimanYamlWrapper():
             ret = install(url) ## install plugin
             '''
             with open(vimanYamlWrapper.ymlDefault,'a+') as f:
-                yaml.dump({vimanUtils.getPlugin4Url(url):{'url':url,'recipe':''}}
+                yaml.dump({vimanUtils.vimanUtils.getPlugin4Url(url):{'url':url,'recipe':''}}
                         ,stream=f,default_flow_style=False)
             '''
             '''
             with open(vimanYamlWrapper.ymlDefault,vimanYamlWrapper.ymlMode) as f:
                 yml = dict(yaml.load(f))
-                yml[vimanUtils.getPlugin4Url(url)] = {'url':url,'recipe':''}
+                yml[vimanUtils.vimanUtils.getPlugin4Url(url)] = {'url':url,'recipe':''}
                 f.seek(0)
                 f.truncate()
                 yaml.dump(yml,stream=f,default_flow_style=False)
@@ -32,7 +32,7 @@ class vimanYamlWrapper():
             yml = vimanYamlWrapper.loadYml()
             if None == yml:
                 yml = {}
-            yml[vimanUtils.getPlugin4Url(url)] = {'url':url,'recipe':''}
+            yml[vimanUtils.vimanUtils.getPlugin4Url(url)] = {'url':url,'recipe':''}
             vimanYamlWrapper.dumpYml(yml)
             return ret
 
@@ -45,13 +45,13 @@ class vimanYamlWrapper():
             '''
             with open(vimanYamlWrapper.ymlDefault,vimanYamlWrapper.ymlMode) as f:
                 yml = yaml.load(f)
-                yml.pop(vimanUtils.getPlugin4Url(url))
+                yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))
                 f.seek(0)
                 f.truncate()
                 yaml.dump(yml,stream=f,default_flow_style=False)
             '''
             yml = vimanYamlWrapper.loadYml()
-            yml.pop(vimanUtils.getPlugin4Url(url))
+            yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))
             vimanYamlWrapper.dumpYml(yml)
             return ret
         

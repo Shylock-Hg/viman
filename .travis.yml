@@ -9,6 +9,9 @@ install :
     - pip install --user .  
 
 script :
+    - viman -h
+    - viman -V
+    - viman -Q
     - viman -Sf test.yml
     - viman -Rf test.yml
 

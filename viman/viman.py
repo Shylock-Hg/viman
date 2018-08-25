@@ -67,8 +67,13 @@ def main():
                 vimanGitWrapper.vimanGitWrapper.install(target)
 
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['remove'][0]:
-        for target in parser.targets:
-            vimanGitWrapper.vimanGitWrapper.remove(target)
+        if vimanArgParser.vimanOptions.options['file'][0] in parser.options:
+            for f in parser.targets:
+                vimanGitWrapper.vimanGitWrapper.removeByYml(f)
+        else:
+            for target in parser.targets:
+                vimanGitWrapper.vimanGitWrapper.remove(target)
+
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['upgrade'][0]:
         for target in parser.targets:
             vimanGitWrapper.vimanGitWrapper.upgrade(target)

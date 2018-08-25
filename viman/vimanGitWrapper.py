@@ -98,4 +98,18 @@ class vimanGitWrapper():
             sys.exit(ret.returncode)
         return ret
 
+    @staticmethod
+    def removeByYml(ymlName):
+        '''
+        @brief remove plugins by yml
+        @param ymlName yml file name
+        '''
+        if not os.path.isfile(ymlName):
+            print('error:don\'t exist file `{}`!'.format(ymlName),file=sys.stderr)
+            sys.exit(errno.EINVAL)
+        with open(ymlName) as f:
+            yml = yaml.load(f)
+            for v in yml.values():
+                vimanGitWrapper.remove(v['url'])
+
 

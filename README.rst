@@ -1,6 +1,9 @@
 viman
 ==========
 
+.. image:: https://travis-ci.org/Shylock-Hg/viman.svg?branch=master
+    :target: https://travis-ci.org/Shylock-Hg/viman
+
 Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on .. _pathogen: https://github.com/tpope/vim-pathogen and .. _git: https://github.com/git/git.
 
 installation

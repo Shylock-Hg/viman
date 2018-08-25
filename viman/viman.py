@@ -52,9 +52,9 @@ def main():
         vimanGitWrapper.vimanGitWrapper.upgrade(args.upgrade)
     '''
     parser = vimanArgParser.vimanArgParser(sys.argv[1:])
-    print(parser.operations)
-    print(parser.options)
-    print(parser.targets)
+    #print(parser.operations)
+    #print(parser.options)
+    #print(parser.targets)
 
     if parser.operations[0] == vimanArgParser.vimanOperations.operations['sync'][0]:
         # sync
@@ -92,9 +92,6 @@ def main():
         return errno.EINVAL
 
     return 0
-
-
-
 
 if '__main__' == __name__:
     sys.exit(main())

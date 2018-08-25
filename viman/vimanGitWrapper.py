@@ -25,9 +25,10 @@ class vimanGitWrapper():
         @param url url of git repository
         '''
         if not os.path.isdir(vimanGitWrapper.DIR_PLUGIN):
-            print('error:don\'t exist directory `{}`!'.format(vimanGitWrapper.DIR_PLUGIN),
-                    file=sys.stderr)
-            sys.exit(errno.ENOENT)
+            #print('error:don\'t exist directory `{}`!'.format(vimanGitWrapper.DIR_PLUGIN),
+                    #file=sys.stderr)
+            #sys.exit(errno.ENOENT)
+            os.makedirs(vimanGitWrapper.DIR_PLUGIN)
         os.chdir(vimanGitWrapper.DIR_PLUGIN)
         #sys.exit(subprocess.run(['git','clone',url]))
         ret = subprocess.run(['git','clone',url])

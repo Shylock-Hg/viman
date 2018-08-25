@@ -79,8 +79,11 @@ def main():
             vimanGitWrapper.vimanGitWrapper.upgrade(target)
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['query'][0]:
         yml = vimanYamlWrapper.vimanYamlWrapper.loadYml()
-        for name in yml:
-            print(format(name))
+        if None == yml:
+            print(yml)
+        else:
+            for name in yml:
+                print(format(name))
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['version'][0]:
         print('{}-{}'.format(PROGRAM,VERSION))
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['help'][0]:

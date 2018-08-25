@@ -83,7 +83,7 @@ def main():
             print(yml)
         else:
             for name in yml:
-                print(format(name))
+                print(name)
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['version'][0]:
         print('{}-{}'.format(PROGRAM,VERSION))
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['help'][0]:

@@ -43,7 +43,9 @@ class vimanOptions():
     ## (short,long,operations,des)
     options = {'sysupgrade':('u','sysupgrade','S','Upgrade all vim plugin packages!'),
             'file':('f','file','SRU','Specify plugins by yml file!'),
-            'recursive':('r','recursive','U','Recursive upgrade vim plugin packages!')} 
+            'recursive':('r','recursive','U','Recursive upgrade vim plugin packages!'),
+            'current':('c','current','S','Specify a current yml context string'),
+            'name':('n','name','R','Specify the name of plugins to remove!')} 
 
     @staticmethod
     def getKey4Option(option:str):
@@ -96,6 +98,7 @@ class vimanArgParser():
         self.targets = rest ## targets git repository url
 
         opts = map(lambda opt : opt[0].replace('-',''), opts)
+        #print(list(opts))
 
         '''
         operations = [ops[0] for ops in list(vimanOperations.operations.values())] + [ops[1] for ops in list(vimanOperations.operations.values())]
@@ -105,6 +108,7 @@ class vimanArgParser():
         options = vimanOptions.getOptions()
 
         opts_operations = list(filter(lambda opt : opt in operations, copy.deepcopy(opts)))
+        #print(opts_operations)
         opts_options = list(filter(lambda opt : opt in options, copy.deepcopy(opts)))
 
         # check operations
@@ -121,12 +125,12 @@ class vimanArgParser():
                 sys.exit(errno.EINVAL)
 
         for opt in opts_options:
-            check_option(opt,operations[0])
+            check_option(opt,opts_operations[0])
 
         if len(opts_operations[0]) > 1:
             self.operations = vimanOperations.operations[opts_operations[0]][0] ## operations
         else:
-            self.operations = opts_operations
+            self.operations = opts_operations[0]
 
         opts_options_short = filter(lambda o : 1 == len(o), copy.deepcopy(opts_options))
         opts_options_long = filter(lambda o : 1 < len(o), copy.deepcopy(opts_options))
@@ -139,12 +143,12 @@ class vimanArgParser():
         '''
         @brief print usage of application
         '''
-        print('Synopsis of viman: viman <operation> [options...] [targets...]\n')
+        print('\nSynopsis of viman: viman <operation> [options...] [targets...]')
         for ops in vimanOperations.operations.values():
-            print('    Operation `-{},--{}` for {}\n'.format(ops[0],ops[1],ops[2]))
+            print('\n\tOperation `-{},--{}` for {}'.format(ops[0],ops[1],ops[2]))
             for opt in vimanOptions.options.values():
                 if ops[0] in opt[2]:
-                    print('        Option `-{},--{}` for {}\n'.format(opt[0],opt[1],opt[3]))
+                    print('\t\tOption `-{},--{}` for {}'.format(opt[0],opt[1],opt[3]))
 
 
 def _test():

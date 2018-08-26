@@ -12,6 +12,7 @@ script :
     - viman -V
     - viman -Q
     - viman -Sf test.yml
+    - viman -Ur
     - viman -Rf test.yml
 
 deploy:

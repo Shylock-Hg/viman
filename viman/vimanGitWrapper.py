@@ -54,6 +54,14 @@ class vimanGitWrapper():
                 vimanGitWrapper.install(v['url'],v['recipe'])
 
     @staticmethod
+    def installByCurrent(ymlString):
+        if ymlString:
+            yml = yaml.load(ymlString)
+            if yml:
+                for v in yml.values():
+                    vimanGitWrapper.install(v['url'],v['recipe'])
+
+    @staticmethod
     def upgrade(url):
         '''
         @brief upgrade a vim plugin by git from url
@@ -75,6 +83,17 @@ class vimanGitWrapper():
                     file=sys.stderr)
             sys.exit(ret.returncode)
         return ret
+
+    @staticmethod
+    def upgradeByYml(ymlName):
+        if not os.path.isfile(ymlName):
+            print('error:don\'t exist file `{}`!'.format(ymlName),file=sys.stderr)
+            sys.exit(errno.EINVAL)
+        with open(ymlName) as f:
+            yml = yaml.load(f)
+            for v in yml.values():
+                vimanGitWrapper.upgrade(v['url'])
+
 
     @staticmethod
     #@vimanYamlWrapper.vimanYamlWrapper.removeWrapper anti-multi YAML decorator

@@ -10,13 +10,15 @@ Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman 
 0. install vim.
 1. install and configure [pathogen](https://github.com/tpope/vim-pathogen).
 2. install [git](https://github.com/git/git).
-3. install *viman* by `pip install viman`.
+3. install *viman* by `pip install --user viman`.
 
 ## usage
 
+- query help by `viman -h`
 - install plugin by `viman -S https://github.com/altercation/vim-colors-solarized.git`.
-- uninstall plugin by `viman -R vim-colors-solarized` or `viman -R https://github.com/altercation/vim-colors-solarized.git`.
-- query all plugin installed by `viman -Qa`.
+- uninstall plugin by `viman -Rn vim-colors-solarized` or `viman -R https://github.com/altercation/vim-colors-solarized.git`.
+- query all plugins installed by `viman -Q`.
+- reduct all plugins from yml file by `viman -Sf <yml...>`
 
 ## feature
 

@@ -10,8 +10,9 @@ from viman import vimanArgParser
 from viman import vimanGitWrapper
 from viman import vimanYamlWrapper
 from viman.__init__ import __version__
+from viman.__init__ import __program__
 
-PROGRAM = 'viman'
+PROGRAM = __program__
 VERSION = __version__
 
 #errno = ['OK',                          #0
@@ -60,22 +61,41 @@ def main():
     if parser.operations[0] == vimanArgParser.vimanOperations.operations['sync'][0]:
         # sync
         if vimanArgParser.vimanOptions.options['file'][0] in parser.options:
-            # sysupgrade
+            # yml file
             for f in parser.targets:
                 vimanGitWrapper.vimanGitWrapper.installByYml(f)
+        elif vimanArgParser.vimanOptions.options['current'][0] in parser.options:
+            # current yml string
+            for yml in parser.targets:
+                vimanGitWrapper.vimanGitWrapper.installByCurrent(yml)
+        elif vimanArgParser.vimanOptions.options['sysupgrade'][0] in parser.options:
+            # sysupgrade
+            vimanGitWrapper.vimanGitWrapper.upgradeByYml(vimanYamlWrapper.vimanYamlWrapper.ymlDefault)
+
         else:
             for target in parser.targets:
-                vimanGitWrapper.vimanGitWrapper.install(target)
+                vimanGitWrapper.vimanGitWrapper.install(target, '')
 
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['remove'][0]:
         if vimanArgParser.vimanOptions.options['file'][0] in parser.options:
             for f in parser.targets:
                 vimanGitWrapper.vimanGitWrapper.removeByYml(f)
+        elif vimanArgParser.vimanOptions.options['name'][0] in parser.options:
+            for name in parser.targets:
+                vimanGitWrapper.vimanGitWrapper.removeByName(name)
+
         else:
             for target in parser.targets:
                 vimanGitWrapper.vimanGitWrapper.remove(target)
 
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['upgrade'][0]:
+        if vimanArgParser.vimanOptions.options['file'][0] in parser.options:
+            # upgrade by yml file
+            for f in parser.targets:
+                vimanGitWrapper.vimanGitWrapper.upgradeByYml(f)
+        elif vimanArgParser.vimanOptions.options['recursive'][0] in parser.options:
+            # upgrade recursive
+            vimanGitWrapper.vimanGitWrapper.upgradeByYml(vimanYamlWrapper.vimanYamlWrapper.ymlDefault)
         for target in parser.targets:
             vimanGitWrapper.vimanGitWrapper.upgrade(target)
     elif parser.operations[0] == vimanArgParser.vimanOperations.operations['query'][0]:

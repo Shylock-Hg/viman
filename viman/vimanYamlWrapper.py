@@ -15,7 +15,7 @@ class vimanYamlWrapper():
     @staticmethod
     def installWrapper(install):
         def wrapper(url,recipe):
-            ret = install(url) ## install plugin
+            ret = install(url,recipe) ## install plugin
             '''
             with open(vimanYamlWrapper.ymlDefault,'a+') as f:
                 yaml.dump({vimanUtils.vimanUtils.getPlugin4Url(url):{'url':url,'recipe':''}}

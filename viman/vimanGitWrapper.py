@@ -50,8 +50,9 @@ class vimanGitWrapper():
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
             yml = yaml.load(f)
-            for v in yml.values():
-                vimanGitWrapper.install(v['url'],v['recipe'])
+            if yml:
+                for v in yml.values():
+                    vimanGitWrapper.install(v['url'],v['recipe'])
 
     @staticmethod
     def installByCurrent(ymlString):
@@ -91,8 +92,9 @@ class vimanGitWrapper():
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
             yml = yaml.load(f)
-            for v in yml.values():
-                vimanGitWrapper.upgrade(v['url'])
+            if yml:
+                for v in yml.values():
+                    vimanGitWrapper.upgrade(v['url'])
 
 
     @staticmethod
@@ -130,7 +132,8 @@ class vimanGitWrapper():
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
             yml = yaml.load(f)
-            for v in yml.values():
-                vimanGitWrapper.remove(v['url'])
+            if yml:
+                for v in yml.values():
+                    vimanGitWrapper.remove(v['url'])
 
 

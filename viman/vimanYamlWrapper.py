@@ -51,7 +51,12 @@ class vimanYamlWrapper():
                 yaml.dump(yml,stream=f,default_flow_style=False)
             '''
             yml = vimanYamlWrapper.loadYml()
-            yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))
+            if None == yml
+                return errno.EINVAL
+            try:
+                yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))
+            except KeyError:
+                print('error:yml no key ``!'.format(vimanUtils.vimanUtils.getPlugin4Url(url)), file=sys.stderr)
             vimanYamlWrapper.dumpYml(yml)
             return ret
         
@@ -70,7 +75,11 @@ class vimanYamlWrapper():
                 yaml.dump(yml,stream=f,default_flow_style=False)
             '''
             yml = vimanYamlWrapper.loadYml()
-            yml.pop(name)
+            try:
+                yml.pop(name)
+            except KeyError:
+                print('error:yml no key ``!'.format(name), file=sys.stderr)
+
             vimanYamlWrapper.dumpYml(yml)
             return ret
 

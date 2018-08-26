@@ -19,7 +19,7 @@ class vimanGitWrapper():
 
     @staticmethod
     @vimanYamlWrapper.vimanYamlWrapper.installWrapper
-    def install(url):
+    def install(url,recipe):
         '''
         @brief install a vim plugin to .vim/bundle by git from url
         @param url url of git repository
@@ -36,6 +36,7 @@ class vimanGitWrapper():
             print('error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
                     file=sys.stderr)
             sys.exit(ret.returncode)
+        ret = os.system(recipe)
         return ret
 
     @staticmethod
@@ -50,7 +51,7 @@ class vimanGitWrapper():
         with open(ymlName) as f:
             yml = yaml.load(f)
             for v in yml.values():
-                vimanGitWrapper.install(v['url'])
+                vimanGitWrapper.install(v['url'],v['recipe'])
 
     @staticmethod
     def upgrade(url):

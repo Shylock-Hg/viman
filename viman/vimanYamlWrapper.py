@@ -51,7 +51,7 @@ class vimanYamlWrapper():
                 yaml.dump(yml,stream=f,default_flow_style=False)
             '''
             yml = vimanYamlWrapper.loadYml()
-            if None == yml
+            if None == yml:
                 return errno.EINVAL
             try:
                 yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))

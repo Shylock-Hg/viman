@@ -9,9 +9,10 @@ import errno
 from viman import vimanArgParser
 from viman import vimanGitWrapper
 from viman import vimanYamlWrapper
+from viman.__init__ import __version__
 
 PROGRAM = 'viman'
-VERSION = '0.0.1'
+VERSION = __version__
 
 #errno = ['OK',                          #0
         #'~/.vim/bundle don\'t exists!'] #1

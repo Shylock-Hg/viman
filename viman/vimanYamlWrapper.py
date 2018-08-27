@@ -1,38 +1,33 @@
 #! /usr/bin/env python3
 
-import yaml
+'''
+@brief vimanYamlWrapper wrapper fo yaml operations
+@note not the only entry of yaml API
+'''
+
 import os
 import sys
+
+import yaml
 
 from viman import vimanUtils
 
 class vimanYamlWrapper():
+    '''
+    @brief vimanYamlWrapper wrapper of yaml operations
+    '''
 
-    #ymlDefault = '~/.viman.yml'
-    ymlDefault = os.path.join(os.getenv('HOME'),'.viman.yml')
-    #ymlMode = 'r+'
+    ymlDefault = os.path.join(os.getenv('HOME'), '.viman.yml')
 
     @staticmethod
     def installWrapper(install):
-        def wrapper(url,recipe):
-            ret = install(url,recipe) ## install plugin
-            '''
-            with open(vimanYamlWrapper.ymlDefault,'a+') as f:
-                yaml.dump({vimanUtils.vimanUtils.getPlugin4Url(url):{'url':url,'recipe':''}}
-                        ,stream=f,default_flow_style=False)
-            '''
-            '''
-            with open(vimanYamlWrapper.ymlDefault,vimanYamlWrapper.ymlMode) as f:
-                yml = dict(yaml.load(f))
-                yml[vimanUtils.vimanUtils.getPlugin4Url(url)] = {'url':url,'recipe':''}
-                f.seek(0)
-                f.truncate()
-                yaml.dump(yml,stream=f,default_flow_style=False)
-            '''
+        def wrapper(url, recipe):
+            ret = install(url, recipe)  # install plugin
             yml = vimanYamlWrapper.loadYml()
-            if None == yml:
+            if yml is None:
                 yml = {}
-            yml[vimanUtils.vimanUtils.getPlugin4Url(url)] = {'url':url,'recipe':recipe}
+            yml[vimanUtils.vimanUtils.getPlugin4Url(url)] = {
+                'url':url, 'recipe':recipe}
             vimanYamlWrapper.dumpYml(yml)
             return ret
 
@@ -41,44 +36,31 @@ class vimanYamlWrapper():
     @staticmethod
     def removeWrapper(remove):
         def wrapper(url):
-            ret = remove(url)  ## remove plugin
-            '''
-            with open(vimanYamlWrapper.ymlDefault,vimanYamlWrapper.ymlMode) as f:
-                yml = yaml.load(f)
-                yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))
-                f.seek(0)
-                f.truncate()
-                yaml.dump(yml,stream=f,default_flow_style=False)
-            '''
+            ret = remove(url)  # remove plugin
             yml = vimanYamlWrapper.loadYml()
-            if None == yml:
+            if yml is None:
                 return errno.EINVAL
             try:
                 yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))
             except KeyError:
-                print('error:yml no key ``!'.format(vimanUtils.vimanUtils.getPlugin4Url(url)), file=sys.stderr)
+                print(
+                    'error:yml no key `{}`!'.format(
+                        vimanUtils.vimanUtils.getPlugin4Url(url)),
+                    file=sys.stderr)
             vimanYamlWrapper.dumpYml(yml)
             return ret
         
         return wrapper
-        
+
     @staticmethod
     def removeByNameWrapper(removeByName):
         def wrapper(name):
-            ret = removeByName(name) ## remove plugin by name
-            '''
-            with open(vimanYamlWrapper.ymlDefault,vimanYamlWrapper.ymlMode) as f:
-                yml = yaml.load(f)
-                yml.pop(name)
-                f.seek(0)
-                f.truncate()
-                yaml.dump(yml,stream=f,default_flow_style=False)
-            '''
+            ret = removeByName(name)  # remove plugin by name
             yml = vimanYamlWrapper.loadYml()
             try:
                 yml.pop(name)
             except KeyError:
-                print('error:yml no key ``!'.format(name), file=sys.stderr)
+                print('error:yml no key `{}`!'.format(name), file=sys.stderr)
 
             vimanYamlWrapper.dumpYml(yml)
             return ret
@@ -87,26 +69,30 @@ class vimanYamlWrapper():
 
     @staticmethod
     def loadYml(file=ymlDefault):
+        '''
+        @brief load yaml object from yaml file
+        @param file yaml file name string
+        @retval yaml object
+        '''
         if not os.path.isfile(file):
-            os.mknod(file);
-        with open(file,'r') as f:
+            os.mknod(file)
+        with open(file, 'r') as f:
             yml = yaml.load(f)
             f.close()
             return yml
 
     @staticmethod
-    def dumpYml(yml,file=ymlDefault):
-        with open(file,'w') as f:
-            yaml.dump(yml,stream=f,default_flow_style=False)
+    def dumpYml(yml, file=ymlDefault):
+        with open(file, 'w') as f:
+            yaml.dump(yml, stream=f, default_flow_style=False)
             f.close()
 
 
 def _test():
-    with open(vimanYamlWrapper.ymlDefault,'r') as f:
-        #yaml.dump(yaml.load(f),stream = f, default_flow_style=False)
+    with open(vimanYamlWrapper.ymlDefault, 'r') as f:
+        # yaml.dump(yaml.load(f),stream = f, default_flow_style=False)
         yml = yaml.load(f)
         print(yml)
 
 if '__main__' == __name__:
     _test()
-

@@ -1,3 +1,6 @@
+'''
+@brief vimanUtils common utils for viman
+'''
 
 import os
 

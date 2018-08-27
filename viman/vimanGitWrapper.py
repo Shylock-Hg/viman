@@ -1,3 +1,7 @@
+'''
+@brief vimanGitWrapper wrapper of git subprocess
+@note the only API to git operations
+'''
 
 import subprocess
 import os
@@ -11,30 +15,33 @@ from viman import vimanUtils
 
 class vimanGitWrapper():
     '''
-    @brief low operation wrapper of git , install , upgrade , remove , query 
+    @brief low operation wrapper of git , install , upgrade , remove , query
     @note all other operation base on this
     '''
 
-    DIR_PLUGIN = os.path.join(os.getenv('HOME'),'.vim/bundle')
+    DIR_PLUGIN = os.path.join(os.getenv('HOME'), '.vim/bundle')
 
     @staticmethod
     @vimanYamlWrapper.vimanYamlWrapper.installWrapper
-    def install(url,recipe):
+    def install(url, recipe):
         '''
         @brief install a vim plugin to .vim/bundle by git from url
         @param url url of git repository
         '''
         if not os.path.isdir(vimanGitWrapper.DIR_PLUGIN):
-            #print('error:don\'t exist directory `{}`!'.format(vimanGitWrapper.DIR_PLUGIN),
-                    #file=sys.stderr)
-            #sys.exit(errno.ENOENT)
+            # print('error:don\'t exist directory `{}`!'.format(
+            #     vimanGitWrapper.DIR_PLUGIN),
+                    # file=sys.stderr)
+            # sys.exit(errno.ENOENT)
             os.makedirs(vimanGitWrapper.DIR_PLUGIN)
         os.chdir(vimanGitWrapper.DIR_PLUGIN)
-        #sys.exit(subprocess.run(['git','clone',url]))
-        ret = subprocess.run(['git','clone',url])
+        # sys.exit(subprocess.run(['git','clone',url]))
+        ret = subprocess.run(['git', 'clone', url])
         if not 0 == ret.returncode:
-            print('error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
-                    file=sys.stderr)
+            print(
+                'error:subprocess run `{}` failed!'.format(
+                    ' '.join(ret.args)),
+                file=sys.stderr)
             sys.exit(ret.returncode)
         ret = os.system(recipe)
         return ret
@@ -46,7 +53,9 @@ class vimanGitWrapper():
         @param ymlName yml file name
         '''
         if not os.path.isfile(ymlName):
-            print('error:don\'t exist file `{}`!'.format(ymlName),file=sys.stderr)
+            print(
+                'error:don\'t exist file `{}`!'.format(ymlName),
+                file=sys.stderr)
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
             yml = yaml.load(f)
@@ -60,7 +69,7 @@ class vimanGitWrapper():
             yml = yaml.load(ymlString)
             if yml:
                 for v in yml.values():
-                    vimanGitWrapper.install(v['url'],v['recipe'])
+                    vimanGitWrapper.install(v['url'], v['recipe'])
 
     @staticmethod
     def upgrade(url):
@@ -68,27 +77,36 @@ class vimanGitWrapper():
         @brief upgrade a vim plugin by git from url
         @param url url of git repository
         '''
-        return vimanGitWrapper.upgradeByName(vimanUtils.vimanUtils.getPlugin4Url(url))
-        
+        return vimanGitWrapper.upgradeByName(
+            vimanUtils.vimanUtils.getPlugin4Url(url))
+
     @staticmethod
     def upgradeByName(name):
+        '''
+        @brief upgrade plugin by plugin name
+        '''
         path = os.path.join(vimanGitWrapper.DIR_PLUGIN,name)
         if not os.path.isdir(path):
-            print('error:don\'t exist directory `{}`!'.format(path),file=sys.stderr)
+            print(
+                'error:don\'t exist directory `{}`!'.format(path),
+                file=sys.stderr)
             sys.exit(errno.ENOENT)
         os.chdir(path)
-        #sys.exit(subprocess.run(['git','pull']))
-        ret = subprocess.run(['git','pull'])
+        # sys.exit(subprocess.run(['git','pull']))
+        ret = subprocess.run(['git', 'pull'])
         if not 0 == ret.returncode:
-            print('error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
-                    file=sys.stderr)
+            print(
+                'error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
+                file=sys.stderr)
             sys.exit(ret.returncode)
         return ret
 
     @staticmethod
     def upgradeByYml(ymlName):
         if not os.path.isfile(ymlName):
-            print('error:don\'t exist file `{}`!'.format(ymlName),file=sys.stderr)
+            print(
+                'error:don\'t exist file `{}`!'.format(ymlName),
+                file=sys.stderr)
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
             yml = yaml.load(f)
@@ -96,28 +114,31 @@ class vimanGitWrapper():
                 for v in yml.values():
                     vimanGitWrapper.upgrade(v['url'])
 
-
     @staticmethod
-    #@vimanYamlWrapper.vimanYamlWrapper.removeWrapper anti-multi YAML decorator
     def remove(url):
         '''
         @brief remove a vim plugin from url
         @param url url of git repository
         '''
-        return vimanGitWrapper.removeByName(vimanUtils.vimanUtils.getPlugin4Url(url))
+        return vimanGitWrapper.removeByName(
+            vimanUtils.vimanUtils.getPlugin4Url(url))
 
     @staticmethod
     @vimanYamlWrapper.vimanYamlWrapper.removeByNameWrapper
     def removeByName(name):
-        path = os.path.join(vimanGitWrapper.DIR_PLUGIN,name)
+        path = os.path.join(vimanGitWrapper.DIR_PLUGIN, name)
         if not os.path.isdir(path):
-            print('error:don\'t exist directory `{}`!'.format(path),file=sys.stderr)
+            print(
+                'error:don\'t exist directory `{}`!'.format(path),
+                file=sys.stderr)
             sys.exit(errno.ENOENT)
-        #sys.exit(subprocess.run(['rm','-rf',path]))
-        ret = subprocess.run(['rm','-rf',path])
+        # sys.exit(subprocess.run(['rm','-rf',path]))
+        ret = subprocess.run(['rm', '-rf', path])
         if not 0 == ret.returncode:
-            print('error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
-                    file=sys.stderr)
+            print(
+                'error:subprocess run `{}` failed!'.format(
+                    ' '.join(ret.args)),
+                file=sys.stderr)
             sys.exit(ret.returncode)
         return ret
 
@@ -128,12 +149,12 @@ class vimanGitWrapper():
         @param ymlName yml file name
         '''
         if not os.path.isfile(ymlName):
-            print('error:don\'t exist file `{}`!'.format(ymlName),file=sys.stderr)
+            print(
+                'error:don\'t exist file `{}`!'.format(ymlName),
+                file=sys.stderr)
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
             yml = yaml.load(f)
             if yml:
                 for v in yml.values():
                     vimanGitWrapper.remove(v['url'])
-
-

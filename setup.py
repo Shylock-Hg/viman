@@ -19,7 +19,7 @@ def find_attr(attr, file_path):
     if attr_match:
         return attr_match.group(1)
 
-    raise RuntimeError("Unable to find version string.")
+    raise RuntimeError("Unable to find {} string.".format(attr))
 
 setup(name=find_attr('__program__', 'viman/__init__.py'),
         version=find_attr('__version__', 'viman/__init__.py'),

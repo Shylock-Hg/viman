@@ -4,7 +4,7 @@ viman
 .. image:: https://travis-ci.org/Shylock-Hg/viman.svg?branch=master
     :target: https://travis-ci.org/Shylock-Hg/viman
 
-.. image:: https://img.shields.io/badge/pypi-v0.0.1-brightgreen.svg
+.. image:: https://img.shields.io/badge/pypi-v0.0.3-brightgreen.svg
     :target: https://pypi.org/project/viman/
 
 Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on `Pathogen <https://github.com/tpope/vim-pathogen>`_ and `Git <https://github.com/git/git>_ .

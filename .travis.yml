@@ -7,6 +7,9 @@ install :
     - pip install .  
 
 script :
+    - sudo apt-get update
+    - export NATIVE_INSTALL='sudo apt-get install'
+    - ./install_requirements.sh
     - viman -h
     - viman -V
     - viman -Q

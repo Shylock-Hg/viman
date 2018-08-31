@@ -4,7 +4,11 @@
 # install requirements of viman -- [vim,git,pathogen]
 ################################################################################
 
-NATIVE_INSTALL='sudo pacman -Sy'
+#NATIVE_INSTALL='sudo pacman -Sy'
+if [ -z "$NATIVE_INSTALL" ]; then 
+	echo 'Undefined `NATIVE_INSTALL`!'
+	exit 1
+fi
 
 # vim
 if command -v vim >/dev/null ; then
@@ -16,6 +20,7 @@ else
 		echo 'Install vim ok!'
 	else
 		echo 'Install vim fail!'
+		exit 1
 	fi
 fi
 
@@ -32,6 +37,7 @@ else
 		echo 'Install git ok!'
 	else 
 		echo 'Install git fail!'
+		exit 1
 	fi
 fi
 
@@ -45,6 +51,7 @@ if mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 	echo 'Pathogen is satisfied!'
 else
 	echo 'Pathogne install faild!'
+	exit 1
 fi
 
 if printf 'execute pathogen#infect()\ncall pathogen#helptags()\n' >> \
@@ -52,6 +59,28 @@ if printf 'execute pathogen#infect()\ncall pathogen#helptags()\n' >> \
 	echo "Generate basic configuration to ${HOME}/.vimrc ok!"
 else
 	echo "Generate basic configuration to ${HOME}/.vimrc fail!"
+	exit 1
 fi
 
+printf "#########################################\
+#######################################\n\n"
+
+# viman
+if command -v pip3 >/dev/null ; then
+	echo 'Pip3 is satisfied!'
+else
+	echo 'Installing pip3 ...'
+	if ${NATIVE_INSTALL} python3-pip ; then
+		echo 'Install pip3 ok!'
+	else 
+		echo 'Install pip3 fail!'
+		exit 1
+	fi
+fi
+
+if pip3 install --user viman ; then 
+	echo 'Viman install ok!'
+else
+	echo 'Viman install fail!'
+fi
 

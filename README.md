@@ -10,7 +10,9 @@ Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman 
 0. install vim.
 1. install and configure [pathogen](https://github.com/tpope/vim-pathogen).
 2. install [git](https://github.com/git/git).
-3. install *viman* by `pip install --user viman`.
+3. install *viman* by `pip3 install --user viman`.
+
+note:You can also these four steps by `export NATIVE_INSTALL='sudo pacman -Sy' && curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh`. And should value you own `NATIVE_INSTALL` such as `sudo apt-get install` if you don't use `pacman`.
 
 ## usage
 

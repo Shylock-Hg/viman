@@ -50,6 +50,6 @@ setup(
     packages=['viman'],
     install_requires=['pyyaml'],
     entry_points={
-        'console_scripts': ['viman=viman.viman:main'],
+        'console_scripts': ['viman=viman.vimanApp:main'],
         },
     zip_safe=False)

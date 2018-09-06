@@ -13,12 +13,12 @@ script :
     - sudo apt-get update
     - export NATIVE_INSTALL='sudo apt-get install'
     - ./install.sh
-    - coverage run ./viman/viman.py -h
-    - coverage run ./viman/viman.py -V
-    - coverage run ./viman/viman.py -Q
-    - coverage run ./viman/viman.py -Sf test.yml
-    - coverage run ./viman/viman.py -Ur
-    - coverage run ./viman/viman.py -Rf test.yml
+    - coverage run ./viman/vimanApp.py -h
+    - coverage run ./viman/vimanApp.py -V
+    - coverage run ./viman/vimanApp.py -Q
+    - coverage run ./viman/vimanApp.py -Sf test.yml
+    - coverage run ./viman/vimanApp.py -Ur
+    - coverage run ./viman/vimanApp.py -Rf test.yml
 
 after_success :
     - codecov

@@ -7,6 +7,9 @@ viman
 .. image:: https://img.shields.io/badge/pypi-v0.0.3-brightgreen.svg
     :target: https://pypi.org/project/viman/
 
+.. image:: https://codecov.io/gh/Shylock-Hg/viman/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/Shylock-Hg/viman
+
 Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on `Pathogen <https://github.com/tpope/vim-pathogen>`_ and `Git <https://github.com/git/git>_ .
 
 installation

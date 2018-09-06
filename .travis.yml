@@ -3,6 +3,9 @@ python:
     - "3.5"
     - "3.6"
 
+before_install :
+    - pip install codecov
+
 install :
     - pip install .  
 
@@ -10,12 +13,15 @@ script :
     - sudo apt-get update
     - export NATIVE_INSTALL='sudo apt-get install'
     - ./install.sh
-    - viman -h
-    - viman -V
-    - viman -Q
-    - viman -Sf test.yml
-    - viman -Ur
-    - viman -Rf test.yml
+    - coverage run viman -h
+    - coverage run viman -V
+    - coverage run viman -Q
+    - coverage run viman -Sf test.yml
+    - coverage run viman -Ur
+    - coverage run viman -Rf test.yml
+
+after_success :
+    - codecov
 
 deploy:
     provider: pypi

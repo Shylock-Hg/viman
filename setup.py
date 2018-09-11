@@ -49,6 +49,7 @@ setup(
     license='GPL-3.0',
     packages=['viman'],
     install_requires=['pyyaml'],
+    python_requires='>=3.3',
     entry_points={
         'console_scripts': ['viman=viman.vimanApp:main'],
         },

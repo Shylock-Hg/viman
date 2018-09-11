@@ -80,6 +80,12 @@ fi
 
 if pip3 install --user viman ; then 
 	echo 'Viman install ok!'
+	if command -v viman ; then
+		echo 'Viman is satisfied!'
+	else
+		echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.bashrc
+		export PATH=$PATH:$HOME/.local/bin
+	fi
 else
 	echo 'Viman install fail!'
 fi

@@ -36,10 +36,6 @@ class vimanGitWrapper():
         else:
             ret = subprocess.call(['git', 'clone', url])
         if not 0 == ret:
-            print(
-                'error:subprocess run `{}` failed!'.format(
-                    ' '.join(ret.args)),
-                file=sys.stderr)
             sys.exit(ret)
         ret = os.system(recipe)
         return ret
@@ -95,9 +91,6 @@ class vimanGitWrapper():
         else:
             ret = subprocess.call(['git', 'pull'])
         if not 0 == ret:
-            print(
-                'error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
-                file=sys.stderr)
             sys.exit(ret)
         return ret
 
@@ -137,10 +130,6 @@ class vimanGitWrapper():
         else:
             ret =  subprocess.call(['rm', '-rf', path])
         if not 0 == ret:
-            print(
-                'error:subprocess run `{}` failed!'.format(
-                    ' '.join(ret.args)),
-                file=sys.stderr)
             sys.exit(ret)
         return ret
 

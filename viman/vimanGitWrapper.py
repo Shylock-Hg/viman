@@ -29,20 +29,18 @@ class vimanGitWrapper():
         @param url url of git repository
         '''
         if not os.path.isdir(vimanGitWrapper.DIR_PLUGIN):
-            # print('error:don\'t exist directory `{}`!'.format(
-            #     vimanGitWrapper.DIR_PLUGIN),
-                    # file=sys.stderr)
-            # sys.exit(errno.ENOENT)
             os.makedirs(vimanGitWrapper.DIR_PLUGIN)
         os.chdir(vimanGitWrapper.DIR_PLUGIN)
-        # sys.exit(subprocess.run(['git','clone',url]))
-        ret = subprocess.run(['git', 'clone', url])
-        if not 0 == ret.returncode:
+        if(hasattr(subprocess, 'run')):
+            ret = subprocess.run(['git', 'clone', url]).returncode
+        else:
+            ret = subprocess.call(['git', 'clone', url])
+        if not 0 == ret:
             print(
                 'error:subprocess run `{}` failed!'.format(
                     ' '.join(ret.args)),
                 file=sys.stderr)
-            sys.exit(ret.returncode)
+            sys.exit(ret)
         ret = os.system(recipe)
         return ret
 
@@ -92,13 +90,15 @@ class vimanGitWrapper():
                 file=sys.stderr)
             sys.exit(errno.ENOENT)
         os.chdir(path)
-        # sys.exit(subprocess.run(['git','pull']))
-        ret = subprocess.run(['git', 'pull'])
-        if not 0 == ret.returncode:
+        if hasattr(subprocess, 'run'):
+            ret = subprocess.run(['git', 'pull']).returncode
+        else:
+            ret = subprocess.call(['git', 'pull'])
+        if not 0 == ret:
             print(
                 'error:subprocess run `{}` failed!'.format(' '.join(ret.args)),
                 file=sys.stderr)
-            sys.exit(ret.returncode)
+            sys.exit(ret)
         return ret
 
     @staticmethod
@@ -132,14 +132,16 @@ class vimanGitWrapper():
                 'error:don\'t exist directory `{}`!'.format(path),
                 file=sys.stderr)
             sys.exit(errno.ENOENT)
-        # sys.exit(subprocess.run(['rm','-rf',path]))
-        ret = subprocess.run(['rm', '-rf', path])
-        if not 0 == ret.returncode:
+        if hasattr(subprocess, 'run'):
+            ret = subprocess.run(['rm', '-rf', path]).returncode
+        else:
+            ret =  subprocess.call(['rm', '-rf', path])
+        if not 0 == ret:
             print(
                 'error:subprocess run `{}` failed!'.format(
                     ' '.join(ret.args)),
                 file=sys.stderr)
-            sys.exit(ret.returncode)
+            sys.exit(ret)
         return ret
 
     @staticmethod
@@ -158,3 +160,4 @@ class vimanGitWrapper():
             if yml:
                 for v in yml.values():
                     vimanGitWrapper.remove(v['url'])
+

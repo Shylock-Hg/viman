@@ -1,7 +1,7 @@
 # viman
 
 [![Build Status](https://travis-ci.org/Shylock-Hg/viman.svg?branch=master)](https://travis-ci.org/Shylock-Hg/viman)
-[![Pypi Status](https://img.shields.io/badge/pypi-v0.0.5-brightgreen.svg)](https://pypi.org/project/viman/)
+[![Pypi Status](https://img.shields.io/badge/pypi-v0.0.6-brightgreen.svg)](https://pypi.org/project/viman/)
 [![codecov](https://codecov.io/gh/Shylock-Hg/viman/branch/master/graph/badge.svg)](https://codecov.io/gh/Shylock-Hg/viman)
 
 Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on [pathogen](https://github.com/tpope/vim-pathogen) and [git](https://github.com/git/git).

@@ -70,7 +70,7 @@ if command -v pip3 >/dev/null ; then
 	echo 'Pip3 is satisfied!'
 else
 	echo 'Installing pip3 ...'
-	if ${NATIVE_INSTALL} python3-pip ; then
+	if ${NATIVE_INSTALL} python-pip ; then
 		echo 'Install pip3 ok!'
 	else 
 		echo 'Install pip3 fail!'

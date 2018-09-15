@@ -16,7 +16,7 @@ if command -v vim >/dev/null ; then
 	echo 'Vim is satisfied!'
 else
 	echo 'Installing vim ...'
-	if ${NATIVE_INSTALL} vim ; then
+	if eval ${NATIVE_INSTALL} vim ; then
 		echo 'Install vim ok!'
 	else
 		echo 'Install vim fail!'
@@ -33,7 +33,7 @@ if command -v git >/dev/null ; then
 	echo 'Git is satisfied!'
 else
 	echo 'Installing git ...'
-	if ${NATIVE_INSTALL} git ; then
+	if eval ${NATIVE_INSTALL} git ; then
 		echo 'Install git ok!'
 	else 
 		echo 'Install git fail!'
@@ -70,7 +70,7 @@ if command -v pip3 >/dev/null ; then
 	echo 'Pip3 is satisfied!'
 else
 	echo 'Installing pip3 ...'
-	if ${NATIVE_INSTALL} python-pip ; then
+	if eval ${NATIVE_INSTALL} python-pip ; then
 		echo 'Install pip3 ok!'
 	else 
 		echo 'Install pip3 fail!'

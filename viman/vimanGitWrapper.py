@@ -30,14 +30,17 @@ class vimanGitWrapper():
         '''
         if not os.path.isdir(vimanGitWrapper.DIR_PLUGIN):
             os.makedirs(vimanGitWrapper.DIR_PLUGIN)
+        pwd = os.getenv('PWD')
         os.chdir(vimanGitWrapper.DIR_PLUGIN)
         if(hasattr(subprocess, 'run')):
             ret = subprocess.run(['git', 'clone', url]).returncode
         else:
             ret = subprocess.call(['git', 'clone', url])
         if not 0 == ret:
+            os.chdir(pwd)
             sys.exit(ret)
         ret = os.system(recipe)
+        os.chdir(pwd)
         return ret
 
     @staticmethod
@@ -85,13 +88,16 @@ class vimanGitWrapper():
                 'error:don\'t exist directory `{}`!'.format(path),
                 file=sys.stderr)
             sys.exit(errno.ENOENT)
+        pwd = os.getenv('PWD')
         os.chdir(path)
         if hasattr(subprocess, 'run'):
             ret = subprocess.run(['git', 'pull']).returncode
         else:
             ret = subprocess.call(['git', 'pull'])
         if not 0 == ret:
+            os.chdir(pwd)
             sys.exit(ret)
+        os.chdir(pwd)
         return ret
 
     @staticmethod

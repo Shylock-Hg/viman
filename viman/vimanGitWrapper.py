@@ -39,8 +39,8 @@ class vimanGitWrapper():
         if not 0 == ret:
             os.chdir(pwd)
             sys.exit(ret)
-        ret = os.system(recipe)
         os.chdir(pwd)
+        ret = os.system(recipe)
         return ret
 
     @staticmethod

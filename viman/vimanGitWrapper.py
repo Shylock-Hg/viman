@@ -35,7 +35,7 @@ class vimanGitWrapper():
         if hasattr(subprocess, 'run'):
             ret = subprocess.run(['/usr/bin/env', 'git', 'clone', url]).returncode
         else:
-            ret = subprocess.call(['usr/bin/env', 'git', 'clone', url])
+            ret = subprocess.call(['/usr/bin/env', 'git', 'clone', url])
         if 0 != ret:
             os.chdir(pwd)
             sys.exit(ret)

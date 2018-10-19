@@ -32,10 +32,10 @@ class vimanGitWrapper():
             os.makedirs(vimanGitWrapper.DIR_PLUGIN)
         pwd = os.getenv('PWD')
         os.chdir(vimanGitWrapper.DIR_PLUGIN)
-        if(hasattr(subprocess, 'run')):
-            ret = subprocess.run(['git', 'clone', url]).returncode
+        if hasattr(subprocess, 'run'):
+            ret = subprocess.run(['/usr/bin/env', 'git', 'clone', url]).returncode
         else:
-            ret = subprocess.call(['git', 'clone', url])
+            ret = subprocess.call(['/usr/bin/env', 'git', 'clone', url])
         if 0 != ret:
             os.chdir(pwd)
             sys.exit(ret)
@@ -58,7 +58,7 @@ class vimanGitWrapper():
             yml = yaml.safe_load(f)
             if yml:
                 for v in yml.values():
-                    vimanGitWrapper.install(v['url'],v['recipe'])
+                    vimanGitWrapper.install(v['url'], v['recipe'])
 
     @staticmethod
     def installByCurrent(ymlString):
@@ -82,7 +82,7 @@ class vimanGitWrapper():
         '''
         @brief upgrade plugin by plugin name
         '''
-        path = os.path.join(vimanGitWrapper.DIR_PLUGIN,name)
+        path = os.path.join(vimanGitWrapper.DIR_PLUGIN, name)
         if not os.path.isdir(path):
             print(
                 'error:don\'t exist directory `{}`!'.format(path),
@@ -91,9 +91,9 @@ class vimanGitWrapper():
         pwd = os.getenv('PWD')
         os.chdir(path)
         if hasattr(subprocess, 'run'):
-            ret = subprocess.run(['git', 'pull']).returncode
+            ret = subprocess.run(['/usr/bin/env', 'git', 'pull']).returncode
         else:
-            ret = subprocess.call(['git', 'pull'])
+            ret = subprocess.call(['/usr/bin/env', 'git', 'pull'])
         if 0 != ret:
             os.chdir(pwd)
             sys.exit(ret)
@@ -132,9 +132,9 @@ class vimanGitWrapper():
                 file=sys.stderr)
             sys.exit(errno.ENOENT)
         if hasattr(subprocess, 'run'):
-            ret = subprocess.run(['rm', '-rf', path]).returncode
+            ret = subprocess.run(['/usr/bin/env', 'rm', '-rf', path]).returncode
         else:
-            ret =  subprocess.call(['rm', '-rf', path])
+            ret = subprocess.call(['/usr/bin/env', 'rm', '-rf', path])
         if 0 != ret:
             sys.exit(ret)
         return ret

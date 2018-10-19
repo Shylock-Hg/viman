@@ -36,7 +36,7 @@ class vimanGitWrapper():
             ret = subprocess.run(['git', 'clone', url]).returncode
         else:
             ret = subprocess.call(['git', 'clone', url])
-        if not 0 == ret:
+        if 0 != ret:
             os.chdir(pwd)
             sys.exit(ret)
         os.chdir(pwd)
@@ -55,7 +55,7 @@ class vimanGitWrapper():
                 file=sys.stderr)
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
-            yml = yaml.load(f)
+            yml = yaml.safe_load(f)
             if yml:
                 for v in yml.values():
                     vimanGitWrapper.install(v['url'],v['recipe'])
@@ -63,7 +63,7 @@ class vimanGitWrapper():
     @staticmethod
     def installByCurrent(ymlString):
         if ymlString:
-            yml = yaml.load(ymlString)
+            yml = yaml.safe_load(ymlString)
             if yml:
                 for v in yml.values():
                     vimanGitWrapper.install(v['url'], v['recipe'])
@@ -94,7 +94,7 @@ class vimanGitWrapper():
             ret = subprocess.run(['git', 'pull']).returncode
         else:
             ret = subprocess.call(['git', 'pull'])
-        if not 0 == ret:
+        if 0 != ret:
             os.chdir(pwd)
             sys.exit(ret)
         os.chdir(pwd)
@@ -108,7 +108,7 @@ class vimanGitWrapper():
                 file=sys.stderr)
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
-            yml = yaml.load(f)
+            yml = yaml.safe_load(f)
             if yml:
                 for v in yml.values():
                     vimanGitWrapper.upgrade(v['url'])
@@ -135,7 +135,7 @@ class vimanGitWrapper():
             ret = subprocess.run(['rm', '-rf', path]).returncode
         else:
             ret =  subprocess.call(['rm', '-rf', path])
-        if not 0 == ret:
+        if 0 != ret:
             sys.exit(ret)
         return ret
 
@@ -151,8 +151,7 @@ class vimanGitWrapper():
                 file=sys.stderr)
             sys.exit(errno.EINVAL)
         with open(ymlName) as f:
-            yml = yaml.load(f)
+            yml = yaml.safe_load(f)
             if yml:
                 for v in yml.values():
                     vimanGitWrapper.remove(v['url'])
-

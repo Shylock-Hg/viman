@@ -1,7 +1,7 @@
 # viman
 
 [![Build Status](https://travis-ci.org/Shylock-Hg/viman.svg?branch=master)](https://travis-ci.org/Shylock-Hg/viman)
-[![Pypi Status](https://img.shields.io/badge/pypi-v0.0.8-brightgreen.svg)](https://pypi.org/project/viman/)
+[![Pypi Status](https://img.shields.io/badge/pypi-v0.0.9-brightgreen.svg)](https://pypi.org/project/viman/)
 [![codecov](https://codecov.io/gh/Shylock-Hg/viman/branch/master/graph/badge.svg)](https://codecov.io/gh/Shylock-Hg/viman)
 [![CodeFactor](https://www.codefactor.io/repository/github/shylock-hg/viman/badge)](https://www.codefactor.io/repository/github/shylock-hg/viman)
 

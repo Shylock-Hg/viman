@@ -54,7 +54,7 @@ else
 	exit 1
 fi
 
-if echo -e '"pathogen\nexecute pathogen#infect()\ncall pathogen#helptags()\n' >> \
+if printf '"pathogen\nexecute pathogen#infect()\ncall pathogen#helptags()\n' >> \
 		${HOME}/.vimrc ; then
 	echo "Generate basic configuration to ${HOME}/.vimrc ok!"
 else

@@ -10,6 +10,10 @@ viman
 .. image:: https://codecov.io/gh/Shylock-Hg/viman/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/Shylock-Hg/viman
 
+.. image:: https://www.codefactor.io/repository/github/shylock-hg/viman/badge
+   :target: https://www.codefactor.io/repository/github/shylock-hg/viman
+   :alt: CodeFactor
+
 Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on `Pathogen <https://github.com/tpope/vim-pathogen>`_ and `Git <https://github.com/git/git>_ .
 
 installation

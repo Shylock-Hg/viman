@@ -77,7 +77,7 @@ class vimanYamlWrapper():
         if not os.path.isfile(file):
             os.mknod(file)
         with open(file, 'r') as f:
-            yml = yaml.load(f)
+            yml = yaml.safe_load(f)
             f.close()
             return yml
 
@@ -91,7 +91,7 @@ class vimanYamlWrapper():
 def _test():
     with open(vimanYamlWrapper.ymlDefault, 'r') as f:
         # yaml.dump(yaml.load(f),stream = f, default_flow_style=False)
-        yml = yaml.load(f)
+        yml = yaml.safe_load(f)
         print(yml)
 
 if '__main__' == __name__:

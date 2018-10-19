@@ -82,12 +82,12 @@ class vimanOptions():
     @staticmethod
     def getOptionShort():
         return [option[0] for option in
-                vimanOptions.options.values() if not '' == option[0]]
+                vimanOptions.options.values() if '' != option[0]]
 
     @staticmethod
     def getOptionLong():
         return [option[1] for option in vimanOptions.options.values()
-                if not '' == option[1]]
+                if '' != option[1]]
 
     @staticmethod
     def getOptions():

@@ -30,10 +30,10 @@ usage
 -----------------
 
 * query usage of viman by ``viman -h``.
-* install plugin by ``viman -S https://github.com/altercation/vim-colors-solarized.git``.
-* uninstall plugin by ``viman -Rn vim-colors-solarized`` or ``viman -R https://github.com/altercation/vim-colors-solarized.git``.
+* install plugin by ``viman -S https://github.com/altercation/vim-colors-solarized.git ...``.
+* uninstall plugin by ``viman -Rn vim-colors-solarized ...`` or ``viman -R https://github.com/altercation/vim-colors-solarized.git ...``.
 * query all plugins installed by ``viman -Q``.
-* reduct all plugins from yml file by ``viman -Sf <yml...>``.
+* reduct all plugins from yml file by ``viman -Sf <yml ...>``.
 
 feature
 --------------------

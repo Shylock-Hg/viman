@@ -22,18 +22,18 @@ installation
 0. install vim.
 1. install and configure `Pathogen <https://github.com/tpope/vim-pathogen>`_ .
 2. install `Git <https://github.com/git/git>`_ .
-3. install *viman* by :sh:`pip3 install --user viman`.
+3. install *viman* by :bash:`pip3 install --user viman`.
 
-note:You can also perform these four steps by :sh:`export NATIVE_INSTALL='sudo pacman --noconfirm -Sy' && curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh`. And please value you own *NATIVE_INSTALL* such as :sh:`yes | sudo apt-get install` if you don't use *pacman*.
+note:You can also perform these four steps by :bash:`export NATIVE_INSTALL='sudo pacman --noconfirm -Sy' && curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh`. And please value you own *NATIVE_INSTALL* such as :bash:`yes | sudo apt-get install` if you don't use *pacman*.
 
 usage
 -----------------
 
-* query usage of viman by :sh:`viman -h`.
-* install plugin by :sh:`viman -S https://github.com/altercation/vim-colors-solarized.git`.
-* uninstall plugin by :sh:`viman -Rn vim-colors-solarized` or :sh:`viman -R https://github.com/altercation/vim-colors-solarized.git`.
-* query all plugins installed by :sh:`viman -Q`.
-* reduct all plugins from yml file by :sh:`viman -Sf <yml...>`.
+* query usage of viman by :bash:`viman -h`.
+* install plugin by :bash:`viman -S https://github.com/altercation/vim-colors-solarized.git`.
+* uninstall plugin by :bash:`viman -Rn vim-colors-solarized` or :bash:`viman -R https://github.com/altercation/vim-colors-solarized.git`.
+* query all plugins installed by :bash:`viman -Q`.
+* reduct all plugins from yml file by :bash:`viman -Sf <yml...>`.
 
 feature
 --------------------

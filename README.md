@@ -4,6 +4,7 @@
 [![Pypi Status](https://img.shields.io/badge/pypi-v0.0.9-brightgreen.svg)](https://pypi.org/project/viman/)
 [![codecov](https://codecov.io/gh/Shylock-Hg/viman/branch/master/graph/badge.svg)](https://codecov.io/gh/Shylock-Hg/viman)
 [![CodeFactor](https://www.codefactor.io/repository/github/shylock-hg/viman/badge)](https://www.codefactor.io/repository/github/shylock-hg/viman)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on [pathogen](https://github.com/tpope/vim-pathogen) and [git](https://github.com/git/git).
 

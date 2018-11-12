@@ -14,6 +14,10 @@ viman
    :target: https://www.codefactor.io/repository/github/shylock-hg/viman
    :alt: CodeFactor
 
+.. image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+   :target: http://makeapullrequest.com
+
+
 Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on `Pathogen <https://github.com/tpope/vim-pathogen>`_ and `Git <https://github.com/git/git>`_ .
 
 installation

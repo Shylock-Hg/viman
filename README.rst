@@ -14,6 +14,10 @@ viman
    :target: https://www.codefactor.io/repository/github/shylock-hg/viman
    :alt: CodeFactor
 
+.. image:: https://img.shields.io/lgtm/grade/python/g/Shylock-Hg/viman.svg?logo=lgtm&logoWidth=18
+   :target: https://lgtm.com/projects/g/Shylock-Hg/viman/context:python
+   :alt: Language grade: Python
+
 .. image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
    :target: http://makeapullrequest.com
 

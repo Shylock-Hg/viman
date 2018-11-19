@@ -2,24 +2,38 @@ viman
 ==========
 
 +------------+------------+-----------+-----------+-----------+
-| Pypi       |  CI        | Coverage  |   Lint    |    PR     |
+|    Pypi    |     CI     | Coverage  |   Lint    |    PR     |
 +============+============+===========+===========+===========+
-| .. image:: https://img.shields.io/badge/pypi-v0.0.9-brightgreen.svg
-    :target: https://pypi.org/project/viman/ | .. image:: https://travis-ci.org/Shylock-Hg/viman.svg?branch=master
-    :target: https://travis-ci.org/Shylock-Hg/viman  | .. image:: https://codecov.io/gh/Shylock-Hg/viman/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/Shylock-Hg/viman  |    .. image:: https://www.codefactor.io/repository/github/shylock-hg/viman/badge
+|   |Pypi|   |  |travis|  | |codecov| | |codefactor| | |PR-welcomes| |
++------------+------------+-----------+-----------+-----------+
+|            |            |           | |lgtm-lint| |         |
++------------+------------+-----------+-----------+-----------+
+|            |            |           | |Codacy Badge|  |     |
++------------+------------+-----------+-----------+-----------+
+
+.. |travis| image:: https://travis-ci.org/Shylock-Hg/viman.svg?branch=master
+    :target: https://travis-ci.org/Shylock-Hg/viman
+
+.. |Pypi| image:: https://img.shields.io/badge/pypi-v0.0.9-brightgreen.svg
+    :target: https://pypi.org/project/viman/
+
+.. |codecov| image:: https://codecov.io/gh/Shylock-Hg/viman/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/Shylock-Hg/viman
+
+.. |codefactor| image:: https://www.codefactor.io/repository/github/shylock-hg/viman/badge
    :target: https://www.codefactor.io/repository/github/shylock-hg/viman
-   :alt: CodeFactor       |     .. image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
-   :target: http://makeapullrequest.com      |
-+------------+------------+-----------+-----------+-----------+
-|  |  |  |  .. image:: https://img.shields.io/lgtm/grade/python/g/Shylock-Hg/viman.svg?logo=lgtm&logoWidth=18
-    :target: https://lgtm.com/projects/g/Shylock-Hg/viman/context:python
-    :alt: Language grade: Python       |           |
-+------------+------------+-----------+-----------+-----------+
-|  |  |  |  .. image:: https://api.codacy.com/project/badge/Grade/4bc646603b0847d2aee5c7527a35c8e6
-    :target: https://www.codacy.com/app/Shylock-Hg/viman?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Shylock-Hg/viman&amp;utm_campaign=Badge_Grade
-    :alt: Codacy Badge     |           |
-+------------+------------+-----------+-----------+-----------+
+   :alt: CodeFactor
+
+.. |lgtm-lint| image:: https://img.shields.io/lgtm/grade/python/g/Shylock-Hg/viman.svg?logo=lgtm&logoWidth=18
+   :target: https://lgtm.com/projects/g/Shylock-Hg/viman/context:python
+   :alt: Language grade: Python
+
+.. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/4bc646603b0847d2aee5c7527a35c8e6
+   :target: https://www.codacy.com/app/Shylock-Hg/viman?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Shylock-Hg/viman&amp;utm_campaign=Badge_Grade)
+
+.. |PR-welcomes| image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+   :target: http://makeapullrequest.com
+
 
 Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman based on `Pathogen <https://github.com/tpope/vim-pathogen>`_ and `Git <https://github.com/git/git>`_ .
 

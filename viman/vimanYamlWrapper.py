@@ -50,7 +50,7 @@ class vimanYamlWrapper():
                     file=sys.stderr)
             vimanYamlWrapper.dumpYml(yml)
             return ret
-        
+
         return wrapper
 
     @staticmethod

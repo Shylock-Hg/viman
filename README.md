@@ -10,23 +10,22 @@ Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman 
 
 ## installation
 
-0. install vim.
-1. install and configure [pathogen](https://github.com/tpope/vim-pathogen).
-2. install [git](https://github.com/git/git).
-3. install *viman* by `pip3 install --user viman`.
+1.  install vim.
+2.  install and configure [pathogen](https://github.com/tpope/vim-pathogen).
+3.  install [git](https://github.com/git/git).
+4.  install *viman* by `pip3 install --user viman`.
 
 note:You can also perform these four steps by `export NATIVE_INSTALL='sudo pacman --noconfirm -Sy' && curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh`. And please value you own `NATIVE_INSTALL` such as `yse | sudo apt-get install` if you don't use `pacman`.
 
 ## usage
 
-- query help by `viman -h`
-- install plugin by `viman -S https://github.com/altercation/vim-colors-solarized.git`.
-- uninstall plugin by `viman -Rn vim-colors-solarized` or `viman -R https://github.com/altercation/vim-colors-solarized.git`.
-- query all plugins installed by `viman -Q`.
-- reduct all plugins from yml file by `viman -Sf <yml...>`
+-   query help by `viman -h`
+-   install plugin by `viman -S https://github.com/altercation/vim-colors-solarized.git`.
+-   uninstall plugin by `viman -Rn vim-colors-solarized` or `viman -R https://github.com/altercation/vim-colors-solarized.git`.
+-   query all plugins installed by `viman -Q`.
+-   reduct all plugins from yml file by `viman -Sf <yml...>`
 
 ## feature
 
-1. dependency management
-2. plugin backup
-
+1.  dependency management
+2.  plugin backup

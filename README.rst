@@ -1,15 +1,15 @@
 viman
 ==========
 
-+------------+------------+-----------+-----------------+---------------+
-|    Pypi    |     CI     | Coverage  |   Lint          |    PR         |
-+============+============+===========+=================+===============+
-|   |Pypi|   |  |travis|  | |codecov| | |codefactor|    | |PR-welcomes| |
-+------------+------------+-----------+-----------------+---------------+
-|            |            |           | |lgtm-lint|     |               |
-+------------+------------+-----------+-----------------+---------------+
-|            |            |           | |Codacy Badge|  |               |
-+------------+------------+-----------+-----------------+---------------+
++------------+------------+-----------+-----------------+---------------+---------------+
+|    Pypi    |     CI     | Coverage  |      Lint       |   Project     |      PR       |
++============+============+===========+=================+===============+===============+
+|   |Pypi|   |  |travis|  | |codecov| | |codefactor|    |     |BCH|     | |PR-welcomes| |
++------------+------------+-----------+-----------------+---------------+---------------+
+|            |            |           | |lgtm-lint|     |               |               |
++------------+------------+-----------+-----------------+---------------+---------------+
+|            |            |           | |Codacy Badge|  |               |               |
++------------+------------+-----------+-----------------+---------------+---------------+
 
 .. |travis| image:: https://travis-ci.org/Shylock-Hg/viman.svg?branch=master
     :target: https://travis-ci.org/Shylock-Hg/viman
@@ -30,6 +30,9 @@ viman
 
 .. |Codacy Badge| image:: https://api.codacy.com/project/badge/Grade/4bc646603b0847d2aee5c7527a35c8e6
    :target: https://www.codacy.com/app/Shylock-Hg/viman?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Shylock-Hg/viman&amp;utm_campaign=Badge_Grade)
+
+.. |BCH| image:: https://bettercodehub.com/edge/badge/Shylock-Hg/viman?branch=master
+   :target: https://bettercodehub.com/
 
 .. |PR-welcomes| image:: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
    :target: http://makeapullrequest.com

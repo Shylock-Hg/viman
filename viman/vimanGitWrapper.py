@@ -1,5 +1,5 @@
 '''
-@brief vimanGitWrapper wrapper of git subprocess
+@brief vimanGitWrapper wrapper of git operation (plugin operation in fact)
 @note the only API to git operations
 '''
 
@@ -9,13 +9,15 @@ import sys
 import errno
 
 import yaml
+from git import Repo
+from git import remote
 
 from viman import vimanYamlWrapper
 from viman import vimanUtils
 
 class vimanGitWrapper():
     '''
-    @brief low operation wrapper of git , install , upgrade , remove , query
+    @brief low operation wrapper of plugin , install , upgrade , remove , query
     @note all other operation base on this
     '''
 
@@ -30,16 +32,9 @@ class vimanGitWrapper():
         '''
         if not os.path.isdir(vimanGitWrapper.DIR_PLUGIN):
             os.makedirs(vimanGitWrapper.DIR_PLUGIN)
-        pwd = os.getenv('PWD')
-        os.chdir(vimanGitWrapper.DIR_PLUGIN)
-        if hasattr(subprocess, 'run'):
-            ret = subprocess.run(['/usr/bin/env', 'git', 'clone', url]).returncode
-        else:
-            ret = subprocess.call(['/usr/bin/env', 'git', 'clone', url])
-        if 0 != ret:
-            os.chdir(pwd)
-            sys.exit(ret)
-        os.chdir(pwd)
+        Repo.clone_from(url, os.path.join(
+                vimanGitWrapper.DIR_PLUGIN,
+                vimanUtils.vimanUtils.getPlugin4Url(url)))
         ret = os.system(recipe)
         return ret
 
@@ -88,17 +83,10 @@ class vimanGitWrapper():
                 'error:don\'t exist directory `{}`!'.format(path),
                 file=sys.stderr)
             sys.exit(errno.ENOENT)
-        pwd = os.getenv('PWD')
-        os.chdir(path)
-        if hasattr(subprocess, 'run'):
-            ret = subprocess.run(['/usr/bin/env', 'git', 'pull']).returncode
-        else:
-            ret = subprocess.call(['/usr/bin/env', 'git', 'pull'])
-        if 0 != ret:
-            os.chdir(pwd)
-            sys.exit(ret)
-        os.chdir(pwd)
-        return ret
+        repo = Repo(path)
+        r = remote.Remote(repo, 'origin')
+        r.pull()
+        return 0
 
     @staticmethod
     def upgradeByYml(ymlName):

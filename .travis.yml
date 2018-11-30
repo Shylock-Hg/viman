@@ -19,8 +19,11 @@ script :
     - coverage run ./viman/vimanApp.py -V
     - coverage run ./viman/vimanApp.py -Q
     - coverage run ./viman/vimanApp.py -Sf test.yml
+    - coverage run ./viman/vimanApp.py -S https://github.com/vimscript/vim-snippets.git
     - coverage run ./viman/vimanApp.py -Ur
-    - coverage run ./viman/vimanApp.py -Rf test.yml
+    - coverage run ./viman/vimanApp.py -R https://github.com/vimscript/vim-snippets.git
+    - coverage run ./viman/vimanApp.py -Rn a.vim
+    - coverage run ./viman/vimanApp.py -Rf $HOME/.viman.yml
 
 after_success :
     - codecov

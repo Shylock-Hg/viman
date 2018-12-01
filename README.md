@@ -10,12 +10,11 @@ Plugin manager of vim written by *python3* with *pacman* flavor usage.And viman 
 
 ## installation
 
-1.  install vim.
-2.  install and configure [pathogen](https://github.com/tpope/vim-pathogen).
-3.  install [git](https://github.com/git/git).
-4.  install *viman* by `pip3 install --user viman`.
+0.  install vim.
+1.  install and configure [pathogen](https://github.com/tpope/vim-pathogen).
+2.  install *viman* by `pip3 install --user viman`.
 
-note:You can also perform these four steps by `export NATIVE_INSTALL='sudo pacman --noconfirm -Sy' && curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh`. And please value you own `NATIVE_INSTALL` such as `yse | sudo apt-get install` if you don't use `pacman`.
+note:You can also perform these three steps by `export NATIVE_INSTALL='sudo pacman --noconfirm -Sy' && curl -sL https://raw.githubusercontent.com/Shylock-Hg/viman/master/install.sh | sh`. And please value you own `NATIVE_INSTALL` such as `yse | sudo apt-get install` if you don't use `pacman`.
 
 ## usage
 

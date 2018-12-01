@@ -48,7 +48,7 @@ setup(
     author_email='tcath2s@gmail.com',
     license='GPL-3.0',
     packages=['viman'],
-    install_requires=['pyyaml'],
+    install_requires=['pyyaml', 'gitpython'],
     python_requires='>=3.3',
     entry_points={
         'console_scripts': ['viman=viman.vimanApp:main'],

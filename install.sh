@@ -28,18 +28,18 @@ printf "########################################\
 ########################################\n\n"
 
 # git
-if command -v git >/dev/null ; then
-	# satisfied
-	echo 'Git is satisfied!'
-else
-	echo 'Installing git ...'
-	if eval ${NATIVE_INSTALL} git ; then
-		echo 'Install git ok!'
-	else 
-		echo 'Install git fail!'
-		exit 1
-	fi
-fi
+#if command -v git >/dev/null ; then
+#	# satisfied
+#	echo 'Git is satisfied!'
+#else
+#	echo 'Installing git ...'
+#	if eval ${NATIVE_INSTALL} git ; then
+#		echo 'Install git ok!'
+#	else
+#		echo 'Install git fail!'
+#		exit 1
+#	fi
+#fi
 
 printf "#########################################\
 #######################################\n\n"

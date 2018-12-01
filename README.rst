@@ -14,7 +14,7 @@ viman
 .. |travis| image:: https://travis-ci.org/Shylock-Hg/viman.svg?branch=master
     :target: https://travis-ci.org/Shylock-Hg/viman
 
-.. |Pypi| image:: https://img.shields.io/badge/pypi-v0.0.9-brightgreen.svg
+.. |Pypi| image:: https://img.shields.io/badge/pypi-v0.0.10-brightgreen.svg
     :target: https://pypi.org/project/viman/
 
 .. |codecov| image:: https://codecov.io/gh/Shylock-Hg/viman/branch/master/graph/badge.svg

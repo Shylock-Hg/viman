@@ -3,10 +3,10 @@
 @note the only API to git operations
 '''
 
-import subprocess
 import os
 import sys
 import errno
+import shutil
 
 import yaml
 from git import Repo
@@ -119,13 +119,8 @@ class vimanGitWrapper():
                 'error:don\'t exist directory `{}`!'.format(path),
                 file=sys.stderr)
             sys.exit(errno.ENOENT)
-        if hasattr(subprocess, 'run'):
-            ret = subprocess.run(['/usr/bin/env', 'rm', '-rf', path]).returncode
-        else:
-            ret = subprocess.call(['/usr/bin/env', 'rm', '-rf', path])
-        if 0 != ret:
-            sys.exit(ret)
-        return ret
+        shutil.rmtree(path, ignore_errors=True)
+        return 0
 
     @staticmethod
     def removeByYml(ymlName):

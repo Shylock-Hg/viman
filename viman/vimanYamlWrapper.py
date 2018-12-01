@@ -18,7 +18,7 @@ class vimanYamlWrapper():
     @brief vimanYamlWrapper wrapper of yaml operations
     '''
 
-    ymlDefault = os.path.join(os.getenv('HOME'), '.viman.yml')
+    ymlDefault = os.path.join(os.path.expanduser('~'), '.viman.yml')
 
     @staticmethod
     def installWrapper(install):

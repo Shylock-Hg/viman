@@ -47,7 +47,7 @@ pyflakes==2.0.0
 Pygments==2.3.0
 pylint==2.2.2
 pylint-celery==0.3
-pylint-django==2.0.2
+pylint-django==2.0.4
 pylint-flask==0.5
 pylint-plugin-utils==0.4
 pyparsing==2.3.0

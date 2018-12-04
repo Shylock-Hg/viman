@@ -20,13 +20,13 @@ VERSION = __version__
 # '~/.vim/bundle don\'t exists!'] #1
 
 
-def main():
+def main(argv):
     '''
     @brief viman for vim plugins manager
     @return error
     '''
 
-    parser = vimanArgParser.vimanArgParser(sys.argv[1:])
+    parser = vimanArgParser.vimanArgParser(argv[1:])
     # print(parser.operations)
     # print(parser.options)
     # print(parser.targets)
@@ -103,5 +103,8 @@ def main():
 
     return 0
 
+def entry():
+    main(sys.argv)
+
 if '__main__' == __name__:
-    sys.exit(main())
+    sys.exit(main(sys.argv))

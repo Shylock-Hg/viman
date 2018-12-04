@@ -51,6 +51,6 @@ setup(
     install_requires=['pyyaml', 'gitpython'],
     python_requires='>=3.3',
     entry_points={
-        'console_scripts': ['viman=viman.vimanApp:main'],
+        'console_scripts': ['viman=viman.vimanApp:entry'],
         },
     zip_safe=False)

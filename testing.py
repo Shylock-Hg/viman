@@ -8,6 +8,7 @@
 '''
 
 import unittest
+import os
 
 from viman import vimanApp
 
@@ -21,7 +22,7 @@ class cli_tests(unittest.TestCase):
         ['viman', '-Ur'],
         ['viman', '-R', 'https://github.com/vimscript/vim-snippets.git'],
         ['viman', '-Rn', 'a.vim'],
-        ['viman', '-Rf', '~/.viman.yml'],
+        ['viman', '-Rf', os.path.join(os.path.expanduser('~'), '.viman.yml')],
     ]
 
     def test_cli(self):

@@ -12,18 +12,7 @@ install :
     - pip install .
 
 script :
-    - sudo apt-get update
-    - export NATIVE_INSTALL='sudo apt-get install'
-    - ./install.sh
-    - coverage run ./viman/vimanApp.py -h
-    - coverage run ./viman/vimanApp.py -V
-    - coverage run ./viman/vimanApp.py -Q
-    - coverage run ./viman/vimanApp.py -Sf test.yml
-    - coverage run ./viman/vimanApp.py -S https://github.com/vimscript/vim-snippets.git
-    - coverage run ./viman/vimanApp.py -Ur
-    - coverage run ./viman/vimanApp.py -R https://github.com/vimscript/vim-snippets.git
-    - coverage run ./viman/vimanApp.py -Rn a.vim
-    - coverage run ./viman/vimanApp.py -Rf $HOME/.viman.yml
+    - coverage run ./testing.py
 
 after_success :
     - codecov

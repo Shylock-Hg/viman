@@ -87,13 +87,3 @@ class vimanYamlWrapper():
         with open(file, 'w') as f:
             yaml.dump(yml, stream=f, default_flow_style=False)
             f.close()
-
-
-def _test():
-    with open(vimanYamlWrapper.ymlDefault, 'r') as f:
-        # yaml.dump(yaml.load(f),stream = f, default_flow_style=False)
-        yml = yaml.safe_load(f)
-        print(yml)
-
-if '__main__' == __name__:
-    _test()

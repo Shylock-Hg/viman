@@ -55,7 +55,7 @@ pyre-check==0.0.18
 pyredpen==0.0.5
 python-engineio==3.0.0
 python-jsonrpc-server==0.0.2
-python-language-server==0.21.3
+python-language-server==0.21.4
 python-socketio==2.1.0
 pytoml==0.1.20
 PyYAML==3.13

@@ -16,9 +16,6 @@ from viman.__init__ import __program__
 PROGRAM = __program__
 VERSION = __version__
 
-# errno = ['OK',                          #0
-# '~/.vim/bundle don\'t exists!'] #1
-
 
 def main(argv):
     '''
@@ -27,9 +24,6 @@ def main(argv):
     '''
 
     parser = vimanArgParser.vimanArgParser(argv[1:])
-    # print(parser.operations)
-    # print(parser.options)
-    # print(parser.targets)
 
     if parser.operations[0] == vimanArgParser.vimanOperations.\
             operations['sync'][0]:
@@ -105,6 +99,3 @@ def main(argv):
 
 def entry():
     main(sys.argv)
-
-if '__main__' == __name__:
-    sys.exit(main(sys.argv))

@@ -12,9 +12,6 @@ install :
     - pip install .
 
 script :
-    - sudo apt-get update
-    - export NATIVE_INSTALL='sudo apt-get install'
-    - ./install.sh
     - coverage run ./testing.py
 
 after_success :

@@ -21,7 +21,7 @@ class vimanGitWrapper():
     @note all other operation base on this
     '''
 
-    DIR_PLUGIN = os.path.join(os.path.expanduser('~'), '.vim/bundle')
+    DIR_PLUGIN = os.path.join(os.path.expanduser('~'), '.vim/pack/viman/start')
 
     @staticmethod
     @vimanYamlWrapper.vimanYamlWrapper.installWrapper

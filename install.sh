@@ -41,31 +41,31 @@ printf "########################################\
 #	fi
 #fi
 
-printf "#########################################\
+#printf "#########################################\
 #######################################\n\n"
 
 # pathogen
-if mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-		curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim 
-	then
-	echo 'Pathogen is satisfied!'
-else
-	echo 'Pathogne install faild!'
-	exit 1
-fi
+#if mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+#		curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim 
+#	then
+#	echo 'Pathogen is satisfied!'
+#else
+#	echo 'Pathogne install faild!'
+#	exit 1
+#fi
 
-if printf '"pathogen\nexecute pathogen#infect()\ncall pathogen#helptags()\n' >> \
-		${HOME}/.vimrc ; then
-	echo "Generate basic configuration to ${HOME}/.vimrc ok!"
-else
-	echo "Generate basic configuration to ${HOME}/.vimrc fail!"
-	exit 1
-fi
+#if printf '"pathogen\nexecute pathogen#infect()\ncall pathogen#helptags()\n' >> \
+#		${HOME}/.vimrc ; then
+#	echo "Generate basic configuration to ${HOME}/.vimrc ok!"
+#else
+#	echo "Generate basic configuration to ${HOME}/.vimrc fail!"
+#	exit 1
+#fi
 
-printf "#########################################\
+#printf "#########################################\
 #######################################\n\n"
 
-# viman
+# pip3
 if command -v pip3 >/dev/null ; then
 	echo 'Pip3 is satisfied!'
 else
@@ -78,6 +78,7 @@ else
 	fi
 fi
 
+# viman
 if pip3 install --user viman ; then 
 	echo 'Viman install ok!'
 	if command -v viman ; then

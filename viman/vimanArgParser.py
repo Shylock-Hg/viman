@@ -5,6 +5,8 @@
 @note 'viman <operation> [options...] [targets..]'
 '''
 
+from viman import vimanExcept
+
 import getopt
 import sys
 import errno
@@ -139,7 +141,9 @@ class vimanArgParser():
             print(
                     'error: only one operation may be used at a time!',
                     file=sys.stderr)
-            sys.exit(errno.EINVAL)
+            # sys.exit(errno.EINVAL)
+            raise vimanExcept.vimanExcept(
+                errno.EINVAL, "Multiple operations at one time!")
 
         # check options
         def check_option(option, operation):
@@ -151,7 +155,9 @@ class vimanArgParser():
                     option,
                     vimanOperations.operations[key_operation][0]),
                     file=sys.stderr)
-                sys.exit(errno.EINVAL)
+                # sys.exit(errno.EINVAL)
+                raise vimanExcept.vimanExcept(
+                    errno.EINVAL, "Invalid option for operation!")
 
         for opt in opts_options:
             check_option(opt, opts_operations[0])

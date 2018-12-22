@@ -21,7 +21,7 @@ class cli_tests(unittest.TestCase):
         ['viman', '-S', 'https://github.com/vimscript/vim-snippets.git'],
         ['viman', '-Ur'],
         ['viman', '-R', 'https://github.com/vimscript/vim-snippets.git'],
-        ['viman', '-Rn', 'a.vim'],
+        ['viman', '-Rn', 'nerdtree'],
         ['viman', '-Rf', os.path.join(os.path.expanduser('~'), '.viman.yml')],
     ]
 

@@ -10,6 +10,7 @@ import errno
 from viman import vimanArgParser
 from viman import vimanGitWrapper
 from viman import vimanYamlWrapper
+from viman import vimanExcept
 from viman.__init__ import __version__
 from viman.__init__ import __program__
 
@@ -93,9 +94,10 @@ def main(argv):
         # invalid operation
         print('error:invalid operation `{}`!'.format(parser.operations[0]),
               file=sys.stderr)
-        return errno.EINVAL
-
+        # return errno.EINVAL
+        raise vimanExcept.vimanExcept(errno.EINVAL, "Invalid operation!")
     return 0
+
 
 def entry():
     main(sys.argv)

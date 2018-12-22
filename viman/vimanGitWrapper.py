@@ -14,6 +14,7 @@ from git import remote
 
 from viman import vimanYamlWrapper
 from viman import vimanUtils
+from viman import vimanExcept
 
 class vimanGitWrapper():
     '''
@@ -33,10 +34,11 @@ class vimanGitWrapper():
         if not os.path.isdir(vimanGitWrapper.DIR_PLUGIN):
             os.makedirs(vimanGitWrapper.DIR_PLUGIN)
         Repo.clone_from(url, os.path.join(
-                vimanGitWrapper.DIR_PLUGIN,
-                vimanUtils.vimanUtils.getPlugin4Url(url)))
+            vimanGitWrapper.DIR_PLUGIN,
+            vimanUtils.vimanUtils.getPlugin4Url(url)))
         ret = os.system(recipe)
-        return ret
+        if ret != 0:
+            raise vimanExcept.vimanExcept(ret, "System scripts failed!")
 
     @staticmethod
     def installByYml(ymlName):
@@ -48,7 +50,9 @@ class vimanGitWrapper():
             print(
                 'error:don\'t exist file `{}`!'.format(ymlName),
                 file=sys.stderr)
-            sys.exit(errno.EINVAL)
+            # sys.exit(errno.EINVAL)
+            raise vimanExcept.vimanExcept(
+                errno.EINVAL, "Don't exist yml file `{}`!".format(ymlName))
         with open(ymlName) as f:
             yml = yaml.safe_load(f)
             if yml:
@@ -82,7 +86,9 @@ class vimanGitWrapper():
             print(
                 'error:don\'t exist directory `{}`!'.format(path),
                 file=sys.stderr)
-            sys.exit(errno.ENOENT)
+            # sys.exit(errno.ENOENT)
+            raise vimanExcept.vimanExcept(
+                errno.ENOENT, "Don't exist path `{}`!".format(path))
         repo = Repo(path)
         r = remote.Remote(repo, 'origin')
         r.pull()
@@ -94,7 +100,9 @@ class vimanGitWrapper():
             print(
                 'error:don\'t exist file `{}`!'.format(ymlName),
                 file=sys.stderr)
-            sys.exit(errno.EINVAL)
+            # sys.exit(errno.EINVAL)
+            raise vimanExcept.vimanExcept(
+                errno.EINVAL, "Don't exist yml file `{}`!".format(ymlName))
         with open(ymlName) as f:
             yml = yaml.safe_load(f)
             if yml:
@@ -118,7 +126,9 @@ class vimanGitWrapper():
             print(
                 'error:don\'t exist directory `{}`!'.format(path),
                 file=sys.stderr)
-            sys.exit(errno.ENOENT)
+            # sys.exit(errno.ENOENT)
+            raise vimanExcept.vimanExcept(
+                errno.ENOENT, "Don't exist directory `{}`".format(path))
         shutil.rmtree(path, ignore_errors=True)
         return 0
 
@@ -132,7 +142,9 @@ class vimanGitWrapper():
             print(
                 'error:don\'t exist file `{}`!'.format(ymlName),
                 file=sys.stderr)
-            sys.exit(errno.EINVAL)
+            # sys.exit(errno.EINVAL)
+            raise vimanExcept.vimanExcept(
+                errno.EINVAL, "Don't exist file `{}`".format(ymlName))
         with open(ymlName) as f:
             yml = yaml.safe_load(f)
             if yml:

@@ -4,9 +4,6 @@ nerdtree:
 nerdtree-git-plugin:
   recipe: ''
   url: https://github.com/xuyuanp/nerdtree-git-plugin.git
-tagbar:
-  recipe: 'echo -e "\n\"Tarbar\nlet g:tagbar_width=20" >> $HOME/.vimrc && yes | sudo pacman -Sy ctags'
-  url: https://github.com/majutsushi/tagbar.git
 vim-airline-themes:
   recipe: ''
   url: https://github.com/vim-airline/vim-airline-themes.git

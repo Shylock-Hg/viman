@@ -1,11 +1,21 @@
-FuzzyFinder:
+nerdtree:
+  recipe: 'echo -e "\n\"NERDTree\nlet NERDTreeWinSize=20\nlet NERDTreeShowHidden=1" >> $HOME/.vimrc'
+  url: https://github.com/scrooloose/nerdtree.git
+nerdtree-git-plugin:
   recipe: ''
-  url: https://github.com/vim-scripts/FuzzyFinder.git
-a.vim:
+  url: https://github.com/xuyuanp/nerdtree-git-plugin.git
+tagbar:
+  recipe: 'echo -e "\n\"Tarbar\nlet g:tagbar_width=20" >> $HOME/.vimrc && yes | sudo pacman -Sy ctags'
+  url: https://github.com/majutsushi/tagbar.git
+vim-airline-themes:
   recipe: ''
-  url: https://github.com/vim-scripts/a.vim.git
-
-instantrst:
-  recipe: pip install --user https://github.com/Rykka/instant-rst.py/archive/master.zip
-  url: https://github.com/rykka/instantrst
-
+  url: https://github.com/vim-airline/vim-airline-themes.git
+vim-colors-solarized:
+  recipe: 'echo -e "\n\"solarized\nset background=dark\ncolorscheme solarized" >> $HOME/.vimrc'
+  url: https://github.com/altercation/vim-colors-solarized.git
+vim-fugitive:
+  recipe: ''
+  url: https://github.com/tpope/vim-fugitive.git
+vim-wakatime:
+  recipe: 'curl https://raw.githubusercontent.com/Shylock-Hg/config.linux/master/viman/recipe-vim-wakatime.sh | sh'
+  url: https://github.com/wakatime/vim-wakatime.git

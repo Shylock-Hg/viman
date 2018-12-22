@@ -12,7 +12,6 @@ install :
     - pip install .
 
 script :
-    - touch $HOME/.vimrc
     - coverage run ./testing.py
 
 after_success :

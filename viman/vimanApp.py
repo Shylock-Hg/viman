@@ -96,6 +96,7 @@ def main(argv):
               file=sys.stderr)
         # return errno.EINVAL
         raise vimanExcept.vimanExcept(errno.EINVAL, "Invalid operation!")
+    return 0
 
 
 def entry():

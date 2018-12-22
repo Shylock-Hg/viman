@@ -7,6 +7,5 @@ a.vim:
 
 instantrst:
   recipe: pip install --user https://github.com/Rykka/instant-rst.py/archive/master.zip
-    && sudo apt-get -S curl
   url: https://github.com/rykka/instantrst
 

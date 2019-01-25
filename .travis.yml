@@ -22,3 +22,5 @@ deploy:
     user: ${PYPI_USERNAME}
     password: ${PYPI_PASSWORD}
     skip_existing: true
+    on:
+        branch: release/*

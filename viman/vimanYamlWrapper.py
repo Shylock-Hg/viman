@@ -34,24 +34,24 @@ class vimanYamlWrapper():
 
         return wrapper
 
-    @staticmethod
-    def removeWrapper(remove):
-        def wrapper(url):
-            ret = remove(url)  # remove plugin
-            yml = vimanYamlWrapper.loadYml()
-            if yml is None:
-                return errno.EINVAL
-            try:
-                yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))
-            except KeyError:
-                print(
-                    'error:yml no key `{}`!'.format(
-                        vimanUtils.vimanUtils.getPlugin4Url(url)),
-                    file=sys.stderr)
-            vimanYamlWrapper.dumpYml(yml)
-            return ret
-
-        return wrapper
+#    @staticmethod
+#    def removeWrapper(remove):
+#        def wrapper(url):
+#            ret = remove(url)  # remove plugin
+#            yml = vimanYamlWrapper.loadYml()
+#            if yml is None:
+#                return errno.EINVAL
+#            try:
+#                yml.pop(vimanUtils.vimanUtils.getPlugin4Url(url))
+#            except KeyError:
+#                print(
+#                    'error:yml no key `{}`!'.format(
+#                        vimanUtils.vimanUtils.getPlugin4Url(url)),
+#                    file=sys.stderr)
+#            vimanYamlWrapper.dumpYml(yml)
+#            return ret
+#
+#        return wrapper
 
     @staticmethod
     def removeByNameWrapper(removeByName):

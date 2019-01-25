@@ -68,6 +68,15 @@ class vimanGitWrapper():
                     vimanGitWrapper.install(v['url'], v['recipe'])
 
     @staticmethod
+    def install_by_name(repository):
+        '''
+        @brief install the plugin by repository name in GitHub
+        @param repository username/repository
+        '''
+        url = vimanUtils.vimanUtils.get_github_url_4_name(repository)
+        vimanGitWrapper.install(url, '')
+
+    @staticmethod
     def upgrade(url):
         '''
         @brief upgrade a vim plugin by git from url

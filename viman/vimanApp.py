@@ -43,7 +43,11 @@ def main(argv):
             # sysupgrade
             vimanGitWrapper.vimanGitWrapper.upgradeByYml(
                 vimanYamlWrapper.vimanYamlWrapper.ymlDefault)
-
+        elif vimanArgParser.vimanOptions.options['name'][0] in \
+                parser.options:
+            # install by name
+            for name in parser.targets:
+                vimanGitWrapper.vimanGitWrapper.install_by_name(name)
         else:
             for target in parser.targets:
                 vimanGitWrapper.vimanGitWrapper.install(target, '')

@@ -22,7 +22,7 @@ class cli_tests(unittest.TestCase):
         ['viman', '-Sn', 'prabirshrestha/vim-lsp', 'prabirshrestha/async.vim'],
         ['viman', '-Ur'],
         ['viman', '-R', 'https://github.com/vimscript/vim-snippets.git'],
-        ['viman', '-Rn', 'nerdtree', 'prabirshrestha/async.vim'],
+        ['viman', '-Rn', 'nerdtree', 'async.vim'],
         ['viman', '-Rf', os.path.join(os.path.expanduser('~'), '.viman.yml')],
     ]
 

@@ -67,8 +67,8 @@ class vimanOptions():
             'c', 'current', 'S',
             'Specify a current yml context string'),
         'name': (
-            'n', 'name', 'R',
-            'Specify the name of plugins to remove!')}
+            'n', 'name', 'SR',
+            'Specify the name of plugins to install/remove!')}
 
     @staticmethod
     def getKey4Option(option:str):

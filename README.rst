@@ -1,8 +1,8 @@
-viman 
+viman
 ==========
 
-DON'T MAINTAIN AGAIN, MOVE TO VIM-PLUG_
-  .. _VIM_PLUG: https://github.com/junegunn/vim-plug.git
+DON'T MAINTAIN AGAIN, MOVE TO VIM-PLUG_.
+  .. _VIM-PLUG: https://github.com/junegunn/vim-plug.git
 
 +------------+------------+-----------+-----------------+---------------+---------------+
 |    Pypi    |     CI     | Coverage  |      Lint       |   Project     |      PR       |
